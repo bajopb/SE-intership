@@ -16,19 +16,21 @@ namespace Slave.Services
     {
         private IModbusFactory _factory;
         public IModbusSlaveNetwork SlaveNetwork { get; set; }
-        public SlaveFactoryService(IModbusFactory factory)
+        private byte slaveCounter = 0;
+        public SlaveFactoryService()
         {
-            _factory=factory;
+            _factory=new ModbusFactory();
         }
         public void AddSlave(IModbusSlave slave)
         {
             SlaveNetwork.AddSlave(slave);
         }
 
-        public IModbusSlave CreateSlave(ISlaveDataStore store)
+        public IModbusSlave CreateSlave()
         {
-            IModbusSlave slave = _factory.CreateSlave(1,store);
-            slave.DataStore.CoilDiscretes.WritePoints(1, new bool[] { true, false, true });
+            ISlaveDataStore store = new SlaveDataStore();
+            IModbusSlave slave = _factory.CreateSlave(++slaveCounter,store);
+            slave.DataStore.CoilDiscretes.WritePoints(slaveCounter, new bool[] { true, false, true });
             slave.DataStore.CoilInputs.WritePoints(10001, new bool[] { true, false, true });
             slave.DataStore.InputRegisters.WritePoints(30001, new ushort[] { 100, 1000, 10000 });
             slave.DataStore.HoldingRegisters.WritePoints(40001, new ushort[] { 100, 1000, 10000 });

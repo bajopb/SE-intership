@@ -28,24 +28,20 @@ namespace Slave
     public partial class MainWindow : Window
     {
         private IConnectionService _connectionService;
-        private TcpListener _tcpListener;
-        IModbusFactory factory;
+        ISlaveFactory factory;
         IModbusSlave slave;
-        ISlaveDataStore slaveDataStore;
-        IModbusSlaveNetwork slaveNetwork;
         public MainWindow()
         {
             InitializeComponent();
             _connectionService = new ConnectionService();
-            factory=new ModbusFactory();
-            slaveDataStore=new SlaveDataStore();
+            factory=new SlaveFactoryService();
         }
 
         private async Task Listening()
         {
             try
             {
-                await slaveNetwork.ListenAsync();
+                await factory.SlaveNetwork.ListenAsync();
             }
             catch (Exception ex)
             {
@@ -54,43 +50,13 @@ namespace Slave
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-
-            _tcpListener = await _connectionService.Connect();
-            TcpClient handler = await _tcpListener.AcceptTcpClientAsync();
-            createslave();
+        { 
+            await _connectionService.Connect();
+            await  _connectionService.Listener.AcceptTcpClientAsync();
+            factory.CreateSlaveNetwork(_connectionService.Listener);
+            slave = factory.CreateSlave();
+            factory.SlaveNetwork.AddSlave(slave);
             await Listening();
-
-        }
-
-        private void createslave() {
-            slave = factory.CreateSlave(1, slaveDataStore);
-            slave.DataStore.CoilDiscretes.WritePoints(1, new bool[] { true, false, true });
-            slave.DataStore.CoilInputs.WritePoints(10001, new bool[] { true, false, true });
-            slave.DataStore.InputRegisters.WritePoints(30001, new ushort[] { 100, 1000, 10000 });
-            slave.DataStore.HoldingRegisters.WritePoints(40001, new ushort[] { 100, 1000, 10000 });
-            slaveNetwork = factory.CreateSlaveNetwork(_tcpListener);
-            slaveNetwork.AddSlave(slave);
-        }
-
-        private async void btnConnect_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                
-            }
-            finally
-            {
-                //_tcpListener.Stop();
-            }
-        }
-
-        private async void btnConnect_Copy_Click(object sender, RoutedEventArgs e)
-        {
-            
-
-
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Slave.Interfaces
 {
     internal interface IConnectionService
     {
+        TcpListener Listener { get; }
         Task<TcpListener> Connect();
         void Disconnect();
     }

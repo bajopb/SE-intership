@@ -12,14 +12,15 @@ namespace Slave.Services
 {
     internal class ConnectionService : IConnectionService
     {
-        private TcpListener listener;
-        
+
+        public TcpListener Listener{get;set;}
+
         public async Task<TcpListener> Connect()
         {
             var ipEndPoint = new IPEndPoint(IPAddress.Any, 13);
-            listener = new(ipEndPoint);
-            listener.Start();
-            return listener;
+            Listener = new(ipEndPoint);
+            Listener.Start();
+            return Listener;
         }
 
         public void Disconnect()

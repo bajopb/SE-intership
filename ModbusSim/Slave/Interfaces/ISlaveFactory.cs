@@ -11,7 +11,7 @@ namespace Slave.Interfaces
 {
     internal interface ISlaveFactory
     {
-        IModbusSlave CreateSlave(ISlaveDataStore store);
+        IModbusSlave CreateSlave();
         void CreateSlaveNetwork(TcpListener listener);
         void AddSlave(IModbusSlave slave);
         IModbusSlaveNetwork SlaveNetwork { get; }

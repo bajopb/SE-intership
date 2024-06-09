@@ -6,9 +6,5 @@
         xmlns:local="clr-namespace:Slave"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid>
-        <Button x:Name="btnConnect" Content="Button" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="40" Width="230" Click="btnConnect_Click"/>
-        <Button x:Name="btnConnect_Copy" Content="Button" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Height="40" Width="230" Click="btnConnect_Copy_Click"/>
-
-    </Grid>
+    <Grid/>
 </Window>

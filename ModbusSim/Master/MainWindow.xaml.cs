@@ -65,6 +65,11 @@ namespace Master
 
         private async void btnReadCoils_Click(object sender, RoutedEventArgs e)
         {
+            if(_connectionService.Client==null || _factory.Master==null || !_connectionService.Client.Connected)
+            {
+                MessageBox.Show("Master is not connected to slave.");
+                return;
+            }
             tbInfo.Text = string.Empty;
             ReadCoilsView form=new ReadCoilsView();
             if (form.ShowDialog() == true)
@@ -89,6 +94,11 @@ namespace Master
 
         private async void btnReadDiscreteInputs_Click(object sender, RoutedEventArgs e)
         {
+            if (_connectionService.Client == null || _factory.Master == null || !_connectionService.Client.Connected)
+            {
+                MessageBox.Show("Master is not connected to slave.");
+                return;
+            }
             tbInfo.Text = string.Empty;
             ReadCoilsView form = new ReadCoilsView();
             if (form.ShowDialog() == true)
@@ -113,6 +123,11 @@ namespace Master
 
         private async void btnReadInputRegisters_Click(object sender, RoutedEventArgs e)
         {
+            if (_connectionService.Client == null || _factory.Master == null || !_connectionService.Client.Connected)
+            {
+                MessageBox.Show("Master is not connected to slave.");
+                return;
+            }
             tbInfo.Text = string.Empty;
             ReadCoilsView form = new ReadCoilsView();
             if (form.ShowDialog() == true)
@@ -137,6 +152,11 @@ namespace Master
 
         private async void btnWriteSingleCoil_Click(object sender, RoutedEventArgs e)
         {
+            if (_connectionService.Client == null || _factory.Master == null || !_connectionService.Client.Connected)
+            {
+                MessageBox.Show("Master is not connected to slave.");
+                return;
+            }
             tbInfo.Text = string.Empty;
             WriteSingleCoilView form = new WriteSingleCoilView();
             if (form.ShowDialog() == true)
@@ -154,6 +174,11 @@ namespace Master
 
         private async void btnWrireMultiCoils_Click(object sender, RoutedEventArgs e)
         {
+            if (_connectionService.Client == null || _factory.Master == null || !_connectionService.Client.Connected)
+            {
+                MessageBox.Show("Master is not connected to slave.");
+                return;
+            }
             tbInfo.Text = string.Empty;
             WriteMultiCoilsView form = new WriteMultiCoilsView();
             if (form.ShowDialog() == true)
@@ -171,6 +196,11 @@ namespace Master
 
         private async void btnWriteSingleHoldingRegister_Click(object sender, RoutedEventArgs e)
         {
+            if (_connectionService.Client == null || _factory.Master == null || !_connectionService.Client.Connected)
+            {
+                MessageBox.Show("Master is not connected to slave.");
+                return;
+            }
             tbInfo.Text = string.Empty;
             WriteSingleHoldingRegisterView form = new WriteSingleHoldingRegisterView();
             if (form.ShowDialog() == true)
@@ -188,6 +218,11 @@ namespace Master
 
         private async void btnReadMultiHoldingRegisters_Click(object sender, RoutedEventArgs e)
         {
+            if (_connectionService.Client == null || _factory.Master == null || !_connectionService.Client.Connected)
+            {
+                MessageBox.Show("Master is not connected to slave.");
+                return;
+            }
             tbInfo.Text = string.Empty;
             ReadCoilsView form = new ReadCoilsView();
             if (form.ShowDialog() == true)
