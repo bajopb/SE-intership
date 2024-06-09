@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Master", "Master\Master.csproj", "{62B7C81E-9AE8-4A10-8559-78560CBBCC45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slave", "Slave\Slave.csproj", "{EFCC228D-EB6B-4BFD-AB06-892AA0CD1A25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connection", "Connection\Connection.csproj", "{D28086DB-EA89-4CB7-A69E-98AE069EC261}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62B7C81E-9AE8-4A10-8559-78560CBBCC45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62B7C81E-9AE8-4A10-8559-78560CBBCC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62B7C81E-9AE8-4A10-8559-78560CBBCC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62B7C81E-9AE8-4A10-8559-78560CBBCC45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFCC228D-EB6B-4BFD-AB06-892AA0CD1A25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFCC228D-EB6B-4BFD-AB06-892AA0CD1A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFCC228D-EB6B-4BFD-AB06-892AA0CD1A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCC228D-EB6B-4BFD-AB06-892AA0CD1A25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D28086DB-EA89-4CB7-A69E-98AE069EC261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28086DB-EA89-4CB7-A69E-98AE069EC261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28086DB-EA89-4CB7-A69E-98AE069EC261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28086DB-EA89-4CB7-A69E-98AE069EC261}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C839664E-B97C-424D-9977-101E20B42CAF}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,19 @@
+﻿<Window x:Class="Master.Views.ReadCoilsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Master.Views"
+        mc:Ignorable="d"
+        Title="ReadCoilsView" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="tbUnitID" HorizontalAlignment="Left" Margin="16,49,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbStartAddress" HorizontalAlignment="Left" Margin="16,93,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbNumberOfPoints" HorizontalAlignment="Left" Margin="16,137,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="Unit ID" HorizontalAlignment="Left" Margin="16,23,0,0" VerticalAlignment="Top"/>
+        <Label Content="Start Adress" HorizontalAlignment="Left" Margin="16,67,0,0" VerticalAlignment="Top"/>
+        <Label Content="Number of Points" HorizontalAlignment="Left" Margin="16,111,0,0" VerticalAlignment="Top"/>
+        <Button Content="Read" x:Name="btnRead" HorizontalAlignment="Left" Margin="16,166,0,0" VerticalAlignment="Top" Width="120" Height="33" Click="btnRead_Click"/>
+
+    </Grid>
+</Window>

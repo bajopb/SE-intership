@@ -1,0 +1,21 @@
+﻿<Window x:Class="Master.Views.WriteMultiCoilsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Master.Views"
+        mc:Ignorable="d"
+        Title="WriteMultiCoilsView" Height="450" Width="800">
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Margin="22,47,0,0" TextWrapping="Wrap" x:Name="tbUnitId" VerticalAlignment="Top" Width="120" TextChanged="tbNumberOfCoils_TextChanged"/>
+        <Label Content="Number of coils" HorizontalAlignment="Left" Margin="170,22,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="314,48,0,0" TextWrapping="Wrap" x:Name="tbStartAddress" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Start Address" HorizontalAlignment="Left" Margin="314,22,0,0" VerticalAlignment="Top"/>
+        <Button Content="Write" HorizontalAlignment="Left" Margin="439,47,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="170,47,0,0" TextWrapping="Wrap" Name="tbNumberOfCoils" VerticalAlignment="Top" Width="120" TextChanged="tbNumberOfCoils_TextChanged"/>
+        <Label Content="Unit ID" HorizontalAlignment="Left" Margin="22,21,0,0" VerticalAlignment="Top"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="250">
+            <StackPanel Name="spCoils" Margin="10"/>
+        </ScrollViewer>
+    </Grid>
+</Window>

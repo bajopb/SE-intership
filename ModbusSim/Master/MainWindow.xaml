@@ -1,0 +1,21 @@
+﻿<Window x:Class="Master.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Master"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="469" Width="824" Loaded="Window_Loaded">
+    <Grid Height="450" VerticalAlignment="Top" Margin="0,0,-17,0" Background="Gray">
+        <Button x:Name="btnConnect" Content="Connect" HorizontalAlignment="Left" Margin="20,386,0,0" VerticalAlignment="Top" Click="btnConnect_Click" Width="172" Height="36"/>
+        <TextBlock x:Name="tbInfo" Background="White" HorizontalAlignment="Left" Margin="20,21,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="359" Width="562"/>
+        <Button x:Name="btnReadCoils" Content="Read Coils" HorizontalAlignment="Left" Margin="604,21,0,0" VerticalAlignment="Top" Click="btnReadCoils_Click" Width="172" Height="35"/>
+        <Button x:Name="btnReadDiscreteInputs" Content="Read Discrete Inputs" HorizontalAlignment="Left" Margin="604,74,0,0" VerticalAlignment="Top"  Width="172" Height="35" Click="btnReadDiscreteInputs_Click"/>
+        <Button x:Name="btnReadInputRegisters" Content="Read Input Registers" HorizontalAlignment="Left" Margin="604,135,0,0" VerticalAlignment="Top"  Width="172" Height="35" Click="btnReadInputRegisters_Click"/>
+        <Button x:Name="btnReadMultiHoldingRegisters" Content="Read Multi Holding Registers" HorizontalAlignment="Left" Margin="604,184,0,0" VerticalAlignment="Top"  Width="172" Height="35" Click="btnReadMultiHoldingRegisters_Click"/>
+        <Button x:Name="btnWriteSingleCoil" Content="Write Single Coil" HorizontalAlignment="Left" Margin="604,242,0,0" VerticalAlignment="Top"  Width="172" Height="34" Click="btnWriteSingleCoil_Click"/>
+        <Button x:Name="btnWriteSingleHoldingRegister" Content="Write Single Holding Register" HorizontalAlignment="Left" Margin="604,344,0,0" VerticalAlignment="Top"  Width="172" Height="36" RenderTransformOrigin="-0.794,3.599" Click="btnWriteSingleHoldingRegister_Click"/>
+        <Button x:Name="btnWrireMultiCoils" Content="Write Multi Coils" HorizontalAlignment="Left" Margin="604,291,0,0" VerticalAlignment="Top"  Width="172" Height="35" Click="btnWrireMultiCoils_Click"/>
+
+    </Grid>
+</Window>

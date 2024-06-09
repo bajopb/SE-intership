@@ -1,0 +1,20 @@
+﻿Master
+1.0.0.0
+
+winexe
+C#
+.cs
+C:\Users\Perun\Desktop\New folder\SE-intership\ModbusSim\Master\obj\Debug\net7.0-windows\
+Master
+none
+false
+TRACE;DEBUG;NET;NET7_0;NETCOREAPP
+C:\Users\Perun\Desktop\New folder\SE-intership\ModbusSim\Master\App.xaml
+5-1677999244
+
+141626088981
+199134902222
+MainWindow.xaml;Views\ReadCoilsView.xaml;Views\WriteMultiCoilsView.xaml;Views\WriteSingleCoilView.xaml;Views\WriteSingleHoldingRegisterView.xaml;
+
+True
+
