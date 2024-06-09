@@ -30,8 +30,6 @@ namespace Master
     public partial class MainWindow : Window
     {
         IConnectionService _connectionService;
-        TcpClient? client;
-        IModbusMaster master;
         IMasteraFactoryService _factory;
         public MainWindow()
         {
@@ -48,10 +46,21 @@ namespace Master
 
         private async void btnConnect_Click(object sender, RoutedEventArgs e)
         {
-            client = await _connectionService.Connect();
-            _factory = new MasterFactoryService(client);
-            _factory.CreateMaster();
-            
+            if (_connectionService.Client==null || !_connectionService.Client.Connected)
+            {
+                
+                    await _connectionService.Connect();
+                    await _connectionService.Connect();
+                    _factory = new MasterFactoryService(_connectionService.Client);
+                    _factory.CreateMaster();
+                    btnConnect.Content = "Disconnect";
+            }
+            else
+            {
+                _connectionService.Disconect();
+                btnConnect.Content = "Connect";
+
+            }
         }
 
         private async void btnReadCoils_Click(object sender, RoutedEventArgs e)

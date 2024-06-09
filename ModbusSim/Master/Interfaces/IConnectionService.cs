@@ -9,7 +9,8 @@ namespace Master.Interfaces
 {
     interface IConnectionService
     {
-        Task<TcpClient> Connect();
+        TcpClient Client { get; }
+        Task Connect();
         void Disconect();
     }
 }

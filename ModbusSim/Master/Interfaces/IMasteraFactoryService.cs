@@ -11,6 +11,7 @@ namespace Master.Interfaces
 {
     internal interface IMasteraFactoryService
     {
+        IModbusMaster Master { get; }
         IModbusMaster CreateMaster();
         Task<bool[]> ReadCoils(byte slaveId, ushort startAddress, ushort numberOfPoints);
         Task<bool[]> ReadDiscreteInputs(byte slaveId, ushort startAddress, ushort numberOfPoints);

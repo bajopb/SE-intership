@@ -11,16 +11,20 @@ namespace Master.Services
 {
     class ConnectionService : IConnectionService
     {
-        public async Task<TcpClient> Connect()
+        public TcpClient Client {get;private set;}
+
+        public async Task Connect()
         {
-            TcpClient client = new();
-            await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 13);
-            return client;
+            Client = new TcpClient();
+            await Client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 13);
         }
 
         public void Disconect()
         {
-            throw new NotImplementedException();
+            if (Client != null)
+            {
+                Client.Close();
+            }
         }
     }
 }
