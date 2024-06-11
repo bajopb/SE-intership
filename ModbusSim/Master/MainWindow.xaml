@@ -8,7 +8,7 @@
         Title="MainWindow" Height="469" Width="824" Loaded="Window_Loaded">
     <Grid Height="450" VerticalAlignment="Top" Margin="0,0,-17,0" Background="Gray">
         <Button x:Name="btnConnect" Content="Connect" HorizontalAlignment="Left" Margin="20,386,0,0" VerticalAlignment="Top" Click="btnConnect_Click" Width="172" Height="36"/>
-        <TextBlock x:Name="tbInfo" Background="White" HorizontalAlignment="Left" Margin="20,21,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="359" Width="562"/>
+        <TextBlock x:Name="tbInfo" Background="White" HorizontalAlignment="Left" Margin="398,259,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="121" Width="184"/>
         <Button x:Name="btnReadCoils" Content="Read Coils" HorizontalAlignment="Left" Margin="604,21,0,0" VerticalAlignment="Top" Click="btnReadCoils_Click" Width="172" Height="35"/>
         <Button x:Name="btnReadDiscreteInputs" Content="Read Discrete Inputs" HorizontalAlignment="Left" Margin="604,74,0,0" VerticalAlignment="Top"  Width="172" Height="35" Click="btnReadDiscreteInputs_Click"/>
         <Button x:Name="btnReadInputRegisters" Content="Read Input Registers" HorizontalAlignment="Left" Margin="604,135,0,0" VerticalAlignment="Top"  Width="172" Height="35" Click="btnReadInputRegisters_Click"/>
@@ -16,6 +16,7 @@
         <Button x:Name="btnWriteSingleCoil" Content="Write Single Coil" HorizontalAlignment="Left" Margin="604,242,0,0" VerticalAlignment="Top"  Width="172" Height="34" Click="btnWriteSingleCoil_Click"/>
         <Button x:Name="btnWriteSingleHoldingRegister" Content="Write Single Holding Register" HorizontalAlignment="Left" Margin="604,344,0,0" VerticalAlignment="Top"  Width="172" Height="36" RenderTransformOrigin="-0.794,3.599" Click="btnWriteSingleHoldingRegister_Click"/>
         <Button x:Name="btnWrireMultiCoils" Content="Write Multi Coils" HorizontalAlignment="Left" Margin="604,291,0,0" VerticalAlignment="Top"  Width="172" Height="35" Click="btnWrireMultiCoils_Click"/>
+        <Button Content="Device 1" HorizontalAlignment="Left" Margin="20,21,0,0" VerticalAlignment="Top" Height="96" Width="92" Click="Button_Click"/>
 
     </Grid>
 </Window>
