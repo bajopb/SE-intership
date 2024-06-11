@@ -8,5 +8,37 @@
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Label Content="Device 1" FontSize="23" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbGrinderMethod"  HorizontalAlignment="Left" Margin="166,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="tbGrinderTemperature" HorizontalAlignment="Left" Margin="166,105,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="tbGrinderTime" HorizontalAlignment="Left" Margin="166,131,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="tbSaharificationMethod" HorizontalAlignment="Left" Margin="166,157,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="tbSaharificationTemperature" HorizontalAlignment="Left" Margin="166,183,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="tbSaharificationTime" HorizontalAlignment="Left" Margin="166,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="60"/>
+        <TextBox x:Name="tbMashoutTemperature" HorizontalAlignment="Left" Margin="166,234,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="tbMashoutTime" HorizontalAlignment="Left" Margin="166,262,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="tbFilteringTemperature" HorizontalAlignment="Left" Margin="166,290,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="tbFilteringTime" HorizontalAlignment="Left" Margin="166,316,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <Label Content="Grinder Method" HorizontalAlignment="Left" Margin="71,74,0,0" VerticalAlignment="Top"/>
+        <Label Content="Grinder Time" HorizontalAlignment="Left" Margin="87,127,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.299,-0.894"/>
+        <Label Content="Saharification Method" HorizontalAlignment="Left" Margin="39,153,0,0" VerticalAlignment="Top"/>
+        <Label Content="Saharification Temperature" HorizontalAlignment="Left" Margin="14,179,0,0" VerticalAlignment="Top"/>
+        <Label Content="Saharification Time" HorizontalAlignment="Left" Margin="55,0,0,0" VerticalAlignment="Center"/>
+        <Label Content="Filtering Temperature" HorizontalAlignment="Left" Margin="43,286,0,0" VerticalAlignment="Top"/>
+        <Label Content="Grinder Temperature" HorizontalAlignment="Left" Margin="46,101,0,0" VerticalAlignment="Top"/>
+        <Label Content="Filtering Time" HorizontalAlignment="Left" Margin="84,312,0,0" VerticalAlignment="Top"/>
+        <Label Content="Mashout Temperature" HorizontalAlignment="Left" Margin="39,230,0,0" VerticalAlignment="Top"/>
+        <Label Content="Mashout Time" HorizontalAlignment="Left" Margin="80,258,0,0" VerticalAlignment="Top"/>
+        <Label Content="Holding Registers" HorizontalAlignment="Left" Margin="144,48,0,0" VerticalAlignment="Top"/>
+        <TextBox KeyDown="tbSetIRGrindingMethod_KeyDown" x:Name="tbSetIRGrindingMethod"  HorizontalAlignment="Left" Margin="315,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox KeyDown="tbSetIRGrindingTemperature_KeyDown" x:Name="tbSetIRGrindingTemperature" HorizontalAlignment="Left" Margin="315,105,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox KeyDown="tbSetIRGrindingTime_KeyDown" x:Name="tbSetIRGrindingTime" HorizontalAlignment="Left" Margin="315,131,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox KeyDown="tbSetIRSaharificationMethod_KeyDown" x:Name="tbSetIRSaharificationMethod" HorizontalAlignment="Left" Margin="315,157,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox KeyDown="tbSetIRSaharificationTemperature_KeyDown" x:Name="tbSetIRSaharificationTemperature" HorizontalAlignment="Left" Margin="315,183,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox KeyDown="tbSetIRSaharificationTime_KeyDown" x:Name="tbSetIRSaharificationTime" HorizontalAlignment="Left" Margin="315,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="60"/>
+        <TextBox KeyDown="tbSetIRMashoutTemperature_KeyDown" x:Name="tbSetIRMashoutTemperature" HorizontalAlignment="Left" Margin="315,234,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox KeyDown="tbSetIRMashoutTime_KeyDown" x:Name="tbSetIRMashoutTime" HorizontalAlignment="Left" Margin="315,262,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox KeyDown="tbSetIRFilteringTemperature_KeyDown" x:Name="tbSetIRFilteringTemperature" HorizontalAlignment="Left" Margin="315,290,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <TextBox KeyDown="tbSetIRFilteringTime_KeyDown" x:Name="tbSetIRFilteringTime" HorizontalAlignment="Left" Margin="315,316,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
+        <Label Content="Input Registers" HorizontalAlignment="Left" Margin="301,47,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

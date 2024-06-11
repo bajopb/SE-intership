@@ -28,7 +28,7 @@ namespace Slave.Services
 
         public IModbusSlave CreateSlave()
         {
-            ISlaveDataStore store = new SlaveDataStore();
+            SlaveDataStore store = new SlaveDataStore();
             IModbusSlave slave = _factory.CreateSlave(++slaveCounter,store);
             slave.DataStore.CoilDiscretes.WritePoints(slaveCounter, new bool[] { true, false, true });
             slave.DataStore.CoilInputs.WritePoints(10001, new bool[] { true, false, true });
