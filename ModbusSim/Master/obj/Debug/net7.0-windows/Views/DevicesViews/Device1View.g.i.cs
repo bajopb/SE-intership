@@ -293,7 +293,7 @@ namespace Master.Views.DevicesViews {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Master;component/views/devicesviews/device1view.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Master;V1.0.0.0;component/views/devicesviews/device1view.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\DevicesViews\Device1View.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

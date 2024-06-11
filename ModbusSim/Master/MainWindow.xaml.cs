@@ -279,7 +279,7 @@ namespace Master
                 MessageBox.Show("Connect first.");
             }
         }
-        private async void SetTemperature(object sender, TemperatureSetEventArgs e) {
+        private  void SetTemperature(object sender, TemperatureSetEventArgs e) {
             if (e.Stage == 1) {
                 device1.GrindingStep.Temperature.SetValue(e.Temperature);
             }
@@ -296,7 +296,7 @@ namespace Master
                 device1.FilteringStep.Temperature.SetValue(e.Temperature);
             }
         }
-        private async void SetTime(object sender, TimeSetEventArgs e)
+        private  void SetTime(object sender, TimeSetEventArgs e)
         {
             if (e.Stage == 1)
             {
@@ -315,7 +315,7 @@ namespace Master
                 device1.FilteringStep.Time.SetValue(e.Time);
             }
         }
-        private async void SetMethod(object sender, MethodSetEventArgs e)
+        private  void SetMethod(object sender, MethodSetEventArgs e)
         {
             if (e.Stage == 1)
             {

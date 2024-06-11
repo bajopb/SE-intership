@@ -49,7 +49,14 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetGrindingTemperature.Text, out ushort temperature))
             {
-                TemperatureSet?.Invoke(this, new TemperatureSetEventArgs(temperature, 1));
+                if (temperature>0 && temperature<120) {
+                    TemperatureSet?.Invoke(this, new TemperatureSetEventArgs(temperature, 1));
+                    tbSetGrindingTemperature.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Temperature must be within 0-120.");
+                }
             }
             else
             {
@@ -61,8 +68,16 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetSaharificationTemperature.Text, out ushort temperature))
             {
-                TemperatureSet?.Invoke(this, new TemperatureSetEventArgs(temperature, 2));
-            }
+                if (temperature > 0 && temperature < 120)
+                {
+                    TemperatureSet?.Invoke(this, new TemperatureSetEventArgs(temperature, 2));
+                    tbSetSaharificationTemperature.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Temperature must be within 0-120.");
+                }
+                }
             else
             {
                 MessageBox.Show("Please enter a valid temperature.");
@@ -73,7 +88,15 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetMashoutTemperature.Text, out ushort temperature))
             {
-                TemperatureSet?.Invoke(this, new TemperatureSetEventArgs(temperature, 3));
+                if (temperature > 0 && temperature < 120)
+                {
+                    TemperatureSet?.Invoke(this, new TemperatureSetEventArgs(temperature, 3));
+                    tbSetMashoutTemperature.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Temperature must be within 0-120.");
+                }
             }
             else
             {
@@ -85,7 +108,15 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetFilteringTemperature.Text, out ushort temperature))
             {
+            if (temperature > 0 && temperature < 120)
+            {
                 TemperatureSet?.Invoke(this, new TemperatureSetEventArgs(temperature, 4));
+                tbSetFilteringTemperature.Text = string.Empty; 
+            }
+            else
+            {
+                MessageBox.Show("Temperature must be within 0-120.");
+            }
             }
             else
             {
@@ -97,7 +128,14 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetGrindingTime.Text, out ushort time))
             {
-                TimeSet?.Invoke(this, new TimeSetEventArgs(time, 1));
+                if (time > 0 && time < 180)
+                {
+                    TimeSet?.Invoke(this, new TimeSetEventArgs(time, 1));
+                    tbSetGrindingTime.Text = string.Empty;
+                }
+                else {
+                    MessageBox.Show("Time must be within 0-180.");
+                }
             }
             else
             {
@@ -109,7 +147,15 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetSaharificationTime.Text, out ushort time))
             {
-                TimeSet?.Invoke(this, new TimeSetEventArgs(time, 2));
+                if (time > 0 && time < 180)
+                {
+                    TimeSet?.Invoke(this, new TimeSetEventArgs(time, 2));
+                    tbSetSaharificationTime.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Time must be within 0-180.");
+                }
             }
             else
             {
@@ -121,7 +167,15 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetMashoutTime.Text, out ushort time))
             {
-                TimeSet?.Invoke(this, new TimeSetEventArgs(time, 3));
+                if (time > 0 && time < 180)
+                {
+                    TimeSet?.Invoke(this, new TimeSetEventArgs(time, 3));
+                    tbSetMashoutTime.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Time must be within 0-180.");
+                }
             }
             else
             {
@@ -133,8 +187,16 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetFilteringTime.Text, out ushort time))
             {
-                TimeSet?.Invoke(this, new TimeSetEventArgs(time, 4));
-            }
+                if (time > 0 && time < 180)
+                {
+                    TimeSet?.Invoke(this, new TimeSetEventArgs(time, 4));
+                    tbSetFilteringTime.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Time must be within 0-180.");
+                }
+        }
             else
             {
                 MessageBox.Show("Please enter a valid time.");
@@ -145,7 +207,15 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetGrindingMethod.Text, out ushort method))
             {
-                MethodSet?.Invoke(this, new MethodSetEventArgs(method, 1));
+                if (method > 0 && method < 16)
+                {
+                    MethodSet?.Invoke(this, new MethodSetEventArgs(method, 1));
+                    tbSetGrindingMethod.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Method value must be within 0-16.");
+                }
             }
             else
             {
@@ -157,7 +227,15 @@ namespace Master.Views.DevicesViews
         {
             if (ushort.TryParse(tbSetSaharificationMethod.Text, out ushort method))
             {
-                MethodSet?.Invoke(this, new MethodSetEventArgs(method, 2));
+                if (method > 0 && method < 16)
+                {
+                    MethodSet?.Invoke(this, new MethodSetEventArgs(method, 2));
+                    tbSetSaharificationMethod.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Method value must be within 0-16.");
+                }
             }
             else
             {
