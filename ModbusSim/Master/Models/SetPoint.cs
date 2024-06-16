@@ -12,18 +12,18 @@ namespace Master.Models
     /// <summary>
     /// Represents a set point for interacting with Slave registers.
     /// </summary>
-    internal class SetPoint
+    public class SetPoint
     {
         private IMasteraFactoryService _masterService;
         private byte deviceId;
         /// <summary>
         /// Address of the holding register.
         /// </summary>
-        public ushort HoldingRegister { get; private set; }
+        public ushort HoldingRegister { get;  set; }
         /// <summary>
         /// Address of the input register.
         /// </summary>
-        public ushort InputRegister { get; private set; }
+        public ushort InputRegister { get;  set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SetPoint"/> class.
         /// </summary>
@@ -61,7 +61,7 @@ namespace Master.Models
             }
             else
             {
-                return (await _masterService.ReadInputRegisters(deviceId, InputRegister, 1))[0] ;
+                return (await _masterService.ReadInputRegisters(deviceId, InputRegister, 1))[0];
             }
         }
     }

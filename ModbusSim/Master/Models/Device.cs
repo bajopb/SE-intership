@@ -12,7 +12,7 @@ namespace Master.Models
     /// <summary>
     /// Represents a device with various processing steps.
     /// </summary>
-    internal class Device
+    public class Device
     {
         /// <summary>
         /// Unit ID of the device.
@@ -29,7 +29,7 @@ namespace Master.Models
         /// <summary>
         /// Master service for Modbus operations.
         /// </summary>
-        public IMasteraFactoryService Master { get; private set; }
+        public IMasteraFactoryService Master { get;  set; }
         /// <summary>
         /// Grinding step for the device.
         /// </summary>

@@ -11,62 +11,63 @@
         <Rectangle HorizontalAlignment="Left" Height="71" Margin="27,131,0,0" Stroke="Black" VerticalAlignment="Top" Width="742"/>
         <Rectangle HorizontalAlignment="Left" Height="71" Margin="27,230,0,0" Stroke="Black" VerticalAlignment="Top" Width="742"/>
         <Rectangle HorizontalAlignment="Left" Height="71" Margin="27,328,0,0" Stroke="Black" VerticalAlignment="Top" Width="742"/>
+        
         <Label Background="White" Content="Grinding" HorizontalAlignment="Left" Margin="27,26,0,0" VerticalAlignment="Top"/>
         <Label Background="White" Content="Saharification" HorizontalAlignment="Left" Margin="27,131,0,0" VerticalAlignment="Top"/>
         <Label Background="White" Content="Mashout" HorizontalAlignment="Left" Margin="27,230,0,0" VerticalAlignment="Top"/>
         <Label Background="White" Content="Filtering" HorizontalAlignment="Left" Margin="27,328,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbCurrentGrindingTemperature" IsReadOnly="True" HorizontalAlignment="Left" Margin="222,30,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding GrindingTemperatureIR}" IsReadOnly="True" HorizontalAlignment="Left" Margin="222,30,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
         <Label Content="Current Temperature" HorizontalAlignment="Left" Margin="102,26,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSetGrindingTemperature" HorizontalAlignment="Left" Margin="222,53,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding GrindingTemperatureHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="222,53,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
         <Label Content="Set Temperature" HorizontalAlignment="Left" Margin="125,48,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnSetGrindingTemperature" Content="Set" HorizontalAlignment="Left" Margin="267,52,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.619,0.553" Click="btnSetGrindingTemperature_Click"/>
+        <Button x:Name="btnSetGrindingTemperature" Command="{Binding SetGrindingTemperatureCommand}" Content="Set" HorizontalAlignment="Left" Margin="267,52,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.619,0.553"/>
         <Label Content="Current Time" HorizontalAlignment="Left" Margin="308,26,0,0" VerticalAlignment="Top"/>
         <Label Content="Set Time" HorizontalAlignment="Left" Margin="331,48,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox x:Name="tbCurrentGrindingTime" IsReadOnly="True" HorizontalAlignment="Left" Margin="387,30,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="tbSetGrindingTime" HorizontalAlignment="Left" Margin="387,53,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <Button x:Name="btnSetGrindingTime" Content="Set" HorizontalAlignment="Left" Margin="432,51,0,0" VerticalAlignment="Top" Width="28" Click="btnSetGrindingTime_Click"/>
+        <TextBox Text="{Binding GrindingTimeIR}"  IsReadOnly="True"  HorizontalAlignment="Left" Margin="387,30,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding GrindingTimeHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="387,53,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <Button Command="{Binding SetGrindingTimeCommand}" Content="Set" HorizontalAlignment="Left" Margin="432,51,0,0" VerticalAlignment="Top" Width="28"/>
         <Label Content="Current Method" HorizontalAlignment="Left" Margin="477,26,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbCurrentGrindingMethod" HorizontalAlignment="Left" Margin="572,30,0,0" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding GrindingMethodIR}" IsReadOnly="True"  HorizontalAlignment="Left" Margin="572,30,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
         <Label Content="Set Method" HorizontalAlignment="Left" Margin="495,48,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnSetGrindingMethod" Content="Set" HorizontalAlignment="Left" Margin="617,51,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="5.548,0.82" Click="btnSetGrindingMethod_Click"/>
-        <TextBox x:Name="tbSetGrindingMethod" HorizontalAlignment="Left" Margin="572,53,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <Button Command="{Binding SetGrindingMethodCommand}" Content="Set" HorizontalAlignment="Left" Margin="617,51,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="5.548,0.82"/>
+        <TextBox Text="{Binding GrindingMethodHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="572,53,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
 
         <Label Content="Current Temperature" HorizontalAlignment="Left" Margin="142,131,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbCurrentSaharificationTemperature" IsReadOnly="True" HorizontalAlignment="Left" Margin="261,135,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="tbSetSaharificationTemperature" HorizontalAlignment="Left" Margin="261,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding SaharificationTemperatureIR}" IsReadOnly="True"   HorizontalAlignment="Left" Margin="261,135,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding SaharificationTemperatureHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="261,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
         <Label Content="Current Time" HorizontalAlignment="Left" Margin="319,131,0,0" VerticalAlignment="Top"/>
         <Label Content="Set Time" HorizontalAlignment="Left" Margin="341,153,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox x:Name="tbCurrentSaharificationTime" IsReadOnly="True" HorizontalAlignment="Left" Margin="398,135,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="tbSetSaharificationTime" HorizontalAlignment="Left" Margin="398,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <Button x:Name="btnSetSaharificationTemperature" Content="Set" HorizontalAlignment="Left" Margin="306,156,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.619,0.553" Click="btnSetSaharificationTemperature_Click"/>
+        <TextBox Text="{Binding SaharificationTimeIR}"  IsReadOnly="True"  HorizontalAlignment="Left" Margin="398,135,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding SaharificationTimeHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="398,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <Button Command="{Binding SetSaharificationTemperatureCommand}" Content="Set" HorizontalAlignment="Left" Margin="306,156,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.619,0.553"/>
         <Label Content="Current Method" HorizontalAlignment="Left" Margin="477,131,0,0" VerticalAlignment="Top"/>
         <Label Content="Set Method" HorizontalAlignment="Left" Margin="500,153,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbCurrentSaharificationMethod" HorizontalAlignment="Left" Margin="572,135,0,0" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="tbSetSaharificationMethod" HorizontalAlignment="Left" Margin="572,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <Button x:Name="btnSetSaharificationMethod" Content="Set" HorizontalAlignment="Left" Margin="617,156,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="5.548,0.82" Click="btnSetSaharificationMethod_Click"/>
-        <Button x:Name="btnSetSaharificationTime" Content="Set" HorizontalAlignment="Left" Margin="446,156,0,0" VerticalAlignment="Top" Width="28" Click="btnSetSaharificationTime_Click"/>
+        <TextBox Text="{Binding SaharificationMethodIR}" IsReadOnly="True"  HorizontalAlignment="Left" Margin="572,135,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding SaharificationMethodHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="572,158,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <Button Command="{Binding SetSaharificationMethodCommand}" Content="Set" HorizontalAlignment="Left" Margin="617,156,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="5.548,0.82"/>
+        <Button Command="{Binding SetSaharificationTimeCommand}" Content="Set" HorizontalAlignment="Left" Margin="446,156,0,0" VerticalAlignment="Top" Width="28"/>
         <Label Content="Set Temperature" HorizontalAlignment="Left" Margin="165,150,0,0" VerticalAlignment="Top"/>
 
         <Label Content="Current Temperature" HorizontalAlignment="Left" Margin="142,230,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbCurrentMashoutTemperature" IsReadOnly="True" HorizontalAlignment="Left" Margin="261,234,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="tbSetMashoutTemperature" HorizontalAlignment="Left" Margin="262,260,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding MashoutTemperatureIR}" IsReadOnly="True"   HorizontalAlignment="Left" Margin="261,234,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding MashoutTemperatureHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="262,260,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
         <Label Content="Current Time" HorizontalAlignment="Left" Margin="319,230,0,0" VerticalAlignment="Top"/>
         <Label Content="Set Time" HorizontalAlignment="Left" Margin="341,255,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox x:Name="tbCurrentMashoutTime" IsReadOnly="True" HorizontalAlignment="Left" Margin="398,235,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="tbSetMashoutTime" HorizontalAlignment="Left" Margin="398,260,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <Button x:Name="btnSetMashoutTemperature" Content="Set" HorizontalAlignment="Left" Margin="306,259,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.619,0.553" Click="btnSetMashoutTemperature_Click" />
+        <TextBox Text="{Binding MashoutTimeIR}" IsReadOnly="True"   HorizontalAlignment="Left" Margin="398,235,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding MashoutTimeHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="398,260,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <Button Command="{Binding SetMashoutTemperatureCommand}" Content="Set" HorizontalAlignment="Left" Margin="306,259,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.619,0.553" />
         <Label Content="Set Temperature" HorizontalAlignment="Left" Margin="165,256,0,0" VerticalAlignment="Top"/>
-        <Button  x:Name="btnSetMashoutTime" Content="Set" HorizontalAlignment="Left" Margin="443,258,0,0" VerticalAlignment="Top" Width="28" Click="btnSetMashoutTime_Click"/>
+        <Button  Command="{Binding SetMashoutTimeCommand}" Content="Set" HorizontalAlignment="Left" Margin="443,258,0,0" VerticalAlignment="Top" Width="28"/>
 
         <Label Content="Current Temperature" HorizontalAlignment="Left" Margin="142,328,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbCurrentFilteringTemperature" IsReadOnly="True" HorizontalAlignment="Left" Margin="261,332,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="tbSetFilteringTemperature" HorizontalAlignment="Left" Margin="262,358,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding FilteringTemperatureIR}" IsReadOnly="True"   HorizontalAlignment="Left" Margin="261,332,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding FilteringTemperatureHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="262,358,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
         <Label Content="Current Time" HorizontalAlignment="Left" Margin="319,328,0,0" VerticalAlignment="Top"/>
         <Label Content="Set Time" HorizontalAlignment="Left" Margin="341,354,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox x:Name="tbCurrentFilteringTime" IsReadOnly="True" HorizontalAlignment="Left" Margin="398,333,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="tbSetFilteringTime" HorizontalAlignment="Left" Margin="398,358,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
-        <Button x:Name="btnSetFilteringTemperature" Content="Set" HorizontalAlignment="Left" Margin="306,357,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.619,0.553" Click="btnSetFilteringTemperature_Click"/>
-        <Button  x:Name="btnSetFilteringTime" Content="Set" HorizontalAlignment="Left" Margin="443,357,0,0" VerticalAlignment="Top" Width="28" Click="btnSetFilteringTime_Click"/>
+        <TextBox Text="{Binding FilteringTimeIR}"  IsReadOnly="True"  HorizontalAlignment="Left" Margin="398,333,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <TextBox Text="{Binding FilteringTimeHR, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="398,358,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="40"/>
+        <Button Command="{Binding SetFilteringTemperatureCommand}" Content="Set" HorizontalAlignment="Left" Margin="306,357,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.619,0.553"/>
+        <Button  Command="{Binding SetFilteringTimeCommand}" Content="Set" HorizontalAlignment="Left" Margin="443,357,0,0" VerticalAlignment="Top" Width="28"/>
         <Label Content="Set Temperature" HorizontalAlignment="Left" Margin="165,354,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -15,24 +15,29 @@ namespace Master.Services
     /// </summary>
     class MasterFactoryService : IMasteraFactoryService
     {
-        private TcpClient _tcpClient;
         private IModbusFactory _modbusFactory;
         /// <summary>
         /// Represents the current Modbus Master.
         /// </summary>
         public IModbusMaster Master { get; private set; }
+
+        public TcpClient Client { get; set; }
+
         /// <summary>
         /// Creates a new instance of the Modbus Master.
         /// </summary>
         /// <returns>A new instance of the Modbus Master.</returns>
         public IModbusMaster CreateMaster()
         {
-            Master = _modbusFactory.CreateMaster(_tcpClient);
+            Master = _modbusFactory.CreateMaster(Client);
             return Master;
         }
-        public MasterFactoryService(TcpClient tcpClient) {
-            _tcpClient = tcpClient;
+        public MasterFactoryService() {
             _modbusFactory = new ModbusFactory();
+        }
+        public MasterFactoryService(TcpClient tcpClient) {
+            Client = tcpClient;
+            
         }
         /// <summary>
         /// Reads coils from a Modbus slave device.

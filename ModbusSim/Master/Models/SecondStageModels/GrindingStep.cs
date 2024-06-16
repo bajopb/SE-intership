@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 
 namespace Master.Models.SecondStageModels
 {
-    internal class GrindingStep
+    public class GrindingStep
     {
         public SetPoint GrindingMethod { get; set; }
         public SetPoint Temperature { get; set; }
         public SetPoint Time { get; set; }
+        public IMasteraFactoryService Master { get; set; }
         public GrindingStep(IMasteraFactoryService master, byte deviceId, ushort grindingMethodHRAddress, ushort grindingMethodIRAddress, ushort temperatureHRAddress, ushort temperatureIRAddress, 
             ushort timeHRAddress, ushort timeIRAddress)
         {
-            GrindingMethod = new SetPoint(master, deviceId, grindingMethodHRAddress, grindingMethodIRAddress);
-            Temperature = new SetPoint(master, deviceId, temperatureHRAddress, temperatureIRAddress);
-            Time = new SetPoint(master, deviceId, timeHRAddress, timeIRAddress);
+            Master = master;
+            GrindingMethod = new SetPoint(Master, deviceId, grindingMethodHRAddress, grindingMethodIRAddress);
+            Temperature = new SetPoint(Master, deviceId, temperatureHRAddress, temperatureIRAddress);
+            Time = new SetPoint(Master, deviceId, timeHRAddress, timeIRAddress);
         }
     }
 }

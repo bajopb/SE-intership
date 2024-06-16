@@ -12,8 +12,9 @@ namespace Master.Interfaces
     /// <summary>
     /// Interface for Master Factory Service.
     /// </summary>
-    internal interface IMasteraFactoryService
+    public interface IMasteraFactoryService
     {
+        TcpClient Client { get; set; }
         /// <summary>
         /// Represents the current Modbus Master.
         /// </summary>

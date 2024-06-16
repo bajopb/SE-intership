@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace Master.Models.SecondStageModels
 {
-    internal class MashoutStep
+    public class MashoutStep
     {
         public SetPoint Temperature { get; set; }
         public SetPoint Time { get; set; }
+        public IMasteraFactoryService Master { get; set; }
         public MashoutStep(IMasteraFactoryService master, byte deviceId, ushort temperatureHRAddress, ushort temperatureIRAddress, ushort timeHRAddress, ushort timeIRAddress)
-        {
-            Temperature = new SetPoint(master, deviceId, temperatureHRAddress, temperatureIRAddress);
-            Time = new SetPoint(master, deviceId, timeHRAddress, timeIRAddress);
+        {   
+            Master = master;
+            Temperature = new SetPoint(Master, deviceId, temperatureHRAddress, temperatureIRAddress);
+            Time = new SetPoint(Master, deviceId, timeHRAddress, timeIRAddress);
         }
     }
 }

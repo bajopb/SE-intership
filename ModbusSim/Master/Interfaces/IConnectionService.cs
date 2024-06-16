@@ -11,7 +11,7 @@ namespace Master.Interfaces
     /// <summary>
     /// Interface for managing a TCP connection.
     /// </summary>
-    interface IConnectionService
+    public interface IConnectionService
     {
         /// <summary>
         /// Gets the TCP client used for the connection.

@@ -12,7 +12,7 @@ namespace Master.Services
     /// <summary>
     /// Class for managing a TCP connection.
     /// </summary>
-    class ConnectionService : IConnectionService
+    public class ConnectionService : IConnectionService
     {
         /// <summary>
         /// Gets the TCP client used for the connection.
