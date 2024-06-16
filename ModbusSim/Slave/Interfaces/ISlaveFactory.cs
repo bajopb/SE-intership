@@ -12,7 +12,7 @@ namespace Slave.Interfaces
     /// <summary>
     /// Interface for managing Modbus slaves.
     /// </summary>
-    internal interface ISlaveFactory
+    public  interface ISlaveFactory
     {
         /// <summary>
         /// Gets the Modbus slave network.

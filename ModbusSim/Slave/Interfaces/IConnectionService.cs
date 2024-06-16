@@ -10,7 +10,7 @@ namespace Slave.Interfaces
     /// <summary>
     /// Interface for managing a TCP connection.
     /// </summary>
-    internal interface IConnectionService
+    public interface IConnectionService
     {
         /// <summary>
         /// Gets the TCP listener used for the connection.

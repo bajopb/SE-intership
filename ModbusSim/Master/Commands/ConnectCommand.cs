@@ -41,10 +41,14 @@ namespace Master.Commands
             }
             else
             {
+                
                 _connectionService.Disconect();
                 button.Content = "Connect";
 
             }
+        }
+        public async Task Connect() {
+        
         }
     }
 }

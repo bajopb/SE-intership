@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Slave.Services
 {
-    internal class SlaveFactoryService : ISlaveFactory
+    public class SlaveFactoryService : ISlaveFactory
     {
         private IModbusFactory _factory;
         public IModbusSlaveNetwork SlaveNetwork { get; set; }
@@ -30,10 +30,6 @@ namespace Slave.Services
         {
             SlaveDataStore store = new SlaveDataStore();
             IModbusSlave slave = _factory.CreateSlave(++slaveCounter,store);
-            slave.DataStore.CoilDiscretes.WritePoints(slaveCounter, new bool[] { true, false, true });
-            slave.DataStore.CoilInputs.WritePoints(10001, new bool[] { true, false, true });
-            slave.DataStore.InputRegisters.WritePoints(30001, new ushort[] { 100, 1000, 10000 });
-            slave.DataStore.HoldingRegisters.WritePoints(40001, new ushort[] { 100, 1000, 10000 });
             return slave;
         }
 

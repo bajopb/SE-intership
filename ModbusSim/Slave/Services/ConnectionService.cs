@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Slave.Services
 {
-    internal class ConnectionService : IConnectionService
+    public class ConnectionService : IConnectionService
     {
 
         public TcpListener Listener{get;set;}
@@ -25,7 +25,8 @@ namespace Slave.Services
 
         public void Disconnect()
         {
-            throw new NotImplementedException();
+            Listener.Stop();
+            Listener = null;
         }
     }
 }
