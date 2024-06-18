@@ -20,6 +20,7 @@ namespace Slave.Services
             var ipEndPoint = new IPEndPoint(IPAddress.Any, 13);
             Listener = new(ipEndPoint);
             Listener.Start();
+            Listener.AcceptTcpClientAsync();
             return Listener;
         }
 

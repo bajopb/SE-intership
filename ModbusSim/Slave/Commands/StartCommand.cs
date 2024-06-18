@@ -31,7 +31,6 @@ namespace Slave.Commands
             if (_connectionService.Listener == null)
             {
                 await _connectionService.Connect();
-                await _connectionService.Listener.AcceptTcpClientAsync();
                 _factory.CreateSlaveNetwork(_connectionService.Listener);
                 _slave = _factory.CreateSlave();
                 _factory.SlaveNetwork.AddSlave(_slave);

@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using Master.Models.Enums;
 namespace Master.Services
 {
     /// <summary>
@@ -26,7 +26,19 @@ namespace Master.Services
         public async Task Connect()
         {
             Client = new TcpClient();
-            await Client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 13);            
+
+            while (!Client.Connected)
+            {
+                try
+                {
+                    if (!Client.Connected)
+                    {
+                        await Client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 13);
+                    }
+                }catch (Exception ex) {
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
         /// <summary>
         /// Disconnects from the remote server.

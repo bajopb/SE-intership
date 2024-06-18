@@ -12,7 +12,7 @@ TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\Perun\Desktop\New folder\SE-intership\ModbusSim\Master\App.xaml
 6-160594752
 
-401323815171
+412040055424
 199134902222
 MainWindow.xaml;Views\DevicesViews\Device1View.xaml;Views\FunctionsViews\ReadCoilsView.xaml;Views\FunctionsViews\WriteMultiCoilsView.xaml;Views\FunctionsViews\WriteSingleCoilView.xaml;Views\FunctionsViews\WriteSingleHoldingRegisterView.xaml;
 

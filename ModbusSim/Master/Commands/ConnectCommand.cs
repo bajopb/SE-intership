@@ -29,7 +29,6 @@ namespace Master.Commands
             {
 
                 await _connectionService.Connect();
-                await _connectionService.Connect();
                 _factoryService.Client = _connectionService.Client;
                 _factoryService.CreateMaster();
                 _device.SetRegistersForGrinding(1, 1, 2, 2, 3, 3);

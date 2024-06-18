@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="NModbus" Version="3.0.81" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\" />
   </ItemGroup>
 
 </Project>
