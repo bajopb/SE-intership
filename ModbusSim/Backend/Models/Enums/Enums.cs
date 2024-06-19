@@ -13,4 +13,9 @@ namespace Backend.Models.Enums
         MASHOUT_S=3,
         FILTERING_S=4,
     }
+    public enum ConnectionState
+    {
+        CONNECTED,
+        DISCONNECTED,
+    }
 }

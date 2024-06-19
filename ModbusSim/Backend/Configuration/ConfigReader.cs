@@ -13,8 +13,10 @@ namespace Backend.Configuration
 {
     public class ConfigReader : IConfiguration
     {
-        private string path = "RtuCfg.txt";
-        private int deviceCounter=1;
+        private string path = "C:\\Users\\Perun\\Desktop\\New folder\\SE-intership\\ModbusSim\\Master\\RtuCfg.txt";
+        private byte deviceCounter=1;
+        public string Address { get; private set; }
+        public int Port { get; private set; }
         private Dictionary<byte, IConfigItem> devicesToConfiguration = new Dictionary<byte, IConfigItem>();
         private ConfigItemEqualityComparer equalityComparer = new ConfigItemEqualityComparer();
         public ConfigReader() {
@@ -24,41 +26,30 @@ namespace Backend.Configuration
         private void ReadConfiguration() {
             using (TextReader tr = new StreamReader(path))
             {
-                string config = tr.ReadToEnd();
-                string[] splitedDevices = config.Split("//");
-                for (int i = 0; i < splitedDevices.Length; i++)
+                string config=tr.ReadToEnd();
+                Console.WriteLine(config);
+                string[] devicesSplited=config.Split(';');
+                string[] addressPort = devicesSplited[0].Split("\r\n");
+                Port = Convert.ToInt32(addressPort[0].Split(' ')[1]);
+                Address = Convert.ToString(addressPort[1].Split(' ')[1]);
+                for(int i = 1; i < devicesSplited.Length; i++)
                 {
-                    string[] splitedParameters = splitedDevices[i].Split("\n");
-                    for (int j = 0; i < splitedParameters.Length; j++)
+                    List<string> filtered = devicesSplited[i].Split("\r\n").ToList().FindAll(t=>!string.IsNullOrEmpty(t));
+                    ConfigItem ci = new ConfigItem(filtered);
+                    if (devicesToConfiguration.Count > 0)
                     {
-                        List<string> filtered = splitedParameters.ToList().FindAll(x => !string.IsNullOrEmpty(x));
-                        try
+                        foreach (ConfigItem cf in devicesToConfiguration.Values)
                         {
-                            ConfigItem ci = new ConfigItem(filtered);
-                            if (devicesToConfiguration.Count > 0)
+                            if (!equalityComparer.Equals(cf, ci))
                             {
-                                foreach (ConfigItem cf in devicesToConfiguration.Values)
-                                {
-                                    if (!equalityComparer.Equals(cf, ci))
-                                    {
-                                        devicesToConfiguration.Add(ci.UnitID, ci);
-                                        break;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                devicesToConfiguration.Add(ci.UnitID, ci);
+                                devicesToConfiguration.Add(deviceCounter, ci);
+                                deviceCounter++;
                             }
                         }
-                        catch (ArgumentException argEx)
-                        {
-                            throw new ConfigurationException($"Configuration error: {argEx.Message}", argEx);
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
+                    }
+                    else {
+                        devicesToConfiguration.Add(deviceCounter, ci);
+                        deviceCounter++;
                     }
                 }
             }

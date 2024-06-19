@@ -11,4 +11,8 @@
     <PackageReference Include="NModbus" Version="3.0.81" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Backend\Backend.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backend.Interfaces
+namespace Backend.Commands.CommandResult
 {
-    internal interface ICommandResult
+    public interface ICommandResult
     {
         bool IsSuccess { get; }
         string Message { get; }

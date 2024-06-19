@@ -14,6 +14,19 @@
             "related": ".xml"
           }
         }
+      },
+      "Backend/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "NModbus": "3.0.81"
+        },
+        "compile": {
+          "bin/placeholder/Backend.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Backend.dll": {}
+        }
       }
     }
   },
@@ -38,10 +51,16 @@
         "nmodbus.3.0.81.nupkg.sha512",
         "nmodbus.nuspec"
       ]
+    },
+    "Backend/1.0.0": {
+      "type": "project",
+      "path": "../Backend/Backend.csproj",
+      "msbuildProject": "../Backend/Backend.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
+      "Backend >= 1.0.0",
       "NModbus >= 3.0.81"
     ]
   },
@@ -76,7 +95,11 @@
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Perun\\Desktop\\New folder\\SE-intership\\ModbusSim\\Backend\\Backend.csproj": {
+              "projectPath": "C:\\Users\\Perun\\Desktop\\New folder\\SE-intership\\ModbusSim\\Backend\\Backend.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -10,8 +10,6 @@ namespace Backend.Interfaces
     public interface IConfigItem
     {
         byte UnitID { get; }
-        string Address { get; }
-        int Port { get; }
         Dictionary<StepType, List<ushort>> Registers { get; }
     }
 }

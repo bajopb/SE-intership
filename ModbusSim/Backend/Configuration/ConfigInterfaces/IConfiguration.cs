@@ -9,6 +9,8 @@ namespace Backend.Interfaces
 {
     public interface IConfiguration
     {
+        string Address { get;}
+        int Port { get;}    
         List<IConfigItem> GetConfigurationItems();
     }
 }
