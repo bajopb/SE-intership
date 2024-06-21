@@ -1,4 +1,5 @@
-﻿using Master.Interfaces;
+﻿using Backend.Models.Enums;
+using Master.Interfaces;
 using Master.Models.SecondStageModels;
 using NModbus;
 using System;
@@ -13,100 +14,38 @@ namespace Master.Models
     /// Represents a device with various processing steps.
     /// </summary>
     public class Device
-    {
-        /// <summary>
-        /// Unit ID of the device.
-        /// </summary>
-        public byte UnitId{ get; set; }
-        /// <summary>
-        /// IP address of the device.
-        /// </summary>
-        public string IPAddress { get; set; }
-        /// <summary>
-        /// Port number for the device connection.
-        /// </summary>
-        public int Port { get; set; }
-        /// <summary>
-        /// Master service for Modbus operations.
-        /// </summary>
-        public IMasteraFactoryService Master { get;  set; }
+    { 
+        public byte UnitId { get;set; }
         /// <summary>
         /// Grinding step for the device.
         /// </summary>
-        public GrindingStep GrindingStep { get; set; }
-        /// <summary>
-        /// Saharification step for the device.
-        /// </summary>
-        public SaharificationStep SaharificationStep { get; set; }
-        /// <summary>
-        /// Mashout step for the device.
-        /// </summary>
-        public MashoutStep MashoutStep { get; set; }
-        /// <summary>
-        /// Filtering step for the device.
-        /// </summary>
-        public FilteringStep FilteringStep { get; set; }
-        public Device(IMasteraFactoryService master, byte unitId, string ipAddress, int port) {
+        public Dictionary<StepType, IStep> Steps { get; set; }
+        public Device(byte unitId, Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> dic) {
             UnitId = unitId;
-            IPAddress = ipAddress;
-            Port = port;
-            Master = master;
+            Steps = new Dictionary<StepType, IStep>();
+            SetSteps(dic);
         }
-        /// <summary>
-        /// Sets the registers for the grinding step.
-        /// </summary>
-        /// <param name="methodHoldingRegister">The holding register address for the method.</param>
-        /// <param name="methodInputRegister">The input register address for the method.</param>
-        /// <param name="temperatureHoldingRegister">The holding register address for the temperature.</param>
-        /// <param name="temperatureInputRegister">The input register address for the temperature.</param>
-        /// <param name="timeHoldingRegister">The holding register address for the time.</param>
-        /// <param name="timeInputRegister">The input register address for the time.</param>
-        public void SetRegistersForGrinding(ushort methodHoldingRegister, ushort methodInputRegister, ushort temperatureHoldingRegister, ushort tempreatureInputRegister,
-            ushort timeHoldingRegister, ushort timeInputRegister)
+        private void SetSteps(Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> dic)
         {
-            GrindingStep=new GrindingStep(Master, UnitId, methodHoldingRegister, methodInputRegister, temperatureHoldingRegister, tempreatureInputRegister,
-                timeHoldingRegister, timeInputRegister);
-        }
-        /// <summary>
-        /// Sets the registers for the saharification step.
-        /// </summary>
-        /// <param name="methodHoldingRegister">The holding register address for the method.</param>
-        /// <param name="methodInputRegister">The input register address for the method.</param>
-        /// <param name="temperatureHoldingRegister">The holding register address for the temperature.</param>
-        /// <param name="temperatureInputRegister">The input register address for the temperature.</param>
-        /// <param name="timeHoldingRegister">The holding register address for the time.</param>
-        /// <param name="timeInputRegister">The input register address for the time.</param>
-        public void SetRegistersForSaharification(ushort methodHoldingRegister, ushort methodInputRegister, ushort temperatureHoldingRegister, ushort tempreatureInputRegister,
-            ushort timeHoldingRegister, ushort timeInputRegister)
-        {
-            SaharificationStep = new SaharificationStep(Master, UnitId, methodHoldingRegister, methodInputRegister, temperatureHoldingRegister, tempreatureInputRegister,
-                timeHoldingRegister, timeInputRegister);
-        }
-        /// <summary>
-        /// Sets the registers for the mashout step.
-        /// </summary>
-        /// <param name="temperatureHoldingRegister">The holding register address for the temperature.</param>
-        /// <param name="temperatureInputRegister">The input register address for the temperature.</param>
-        /// <param name="timeHoldingRegister">The holding register address for the time.</param>
-        /// <param name="timeInputRegister">The input register address for the time.</param>
-        public void SetRegistersForMashout(ushort temperatureHoldingRegister, ushort tempreatureInputRegister,
-            ushort timeHoldingRegister, ushort timeInputRegister)
-        {
-            MashoutStep = new MashoutStep(Master, UnitId, temperatureHoldingRegister, tempreatureInputRegister,
-                timeHoldingRegister, timeInputRegister);
-        }
-        /// <summary>
-        /// Sets the registers for the filtering step.
-        /// </summary>
-        /// <param name="temperatureHoldingRegister">The holding register address for the temperature.</param>
-        /// <param name="temperatureInputRegister">The input register address for the temperature.</param>
-        /// <param name="timeHoldingRegister">The holding register address for the time.</param>
-        /// <param name="timeInputRegister">The input register address for the time.</param>
-        public void SetRegistersForFiltering(ushort temperatureHoldingRegister, ushort tempreatureInputRegister,
-            ushort timeHoldingRegister, ushort timeInputRegister)
-        {
-            FilteringStep = new FilteringStep(Master, UnitId, temperatureHoldingRegister, tempreatureInputRegister,
-                timeHoldingRegister, timeInputRegister);
+            foreach (var item in dic)
+            {
+                if (item.Key == StepType.GRINDING_S)
+                {
+                    Steps.Add(StepType.GRINDING_S, new GrindingStep(item.Value));
+                }
+                else if (item.Key == StepType.SAHARIFICATION_S)
+                {
+                    Steps.Add(StepType.SAHARIFICATION_S, new SaharificationStep(item.Value));
+                }
+                else if (item.Key == StepType.MASHOUT_S)
+                {
+                    Steps.Add(StepType.MASHOUT_S, new MashoutStep(item.Value));
+                }
+                else if (item.Key == StepType.FILTERING_S)
+                {
+                    Steps.Add(StepType.FILTERING_S, new FilteringStep(item.Value));
+                }
+            }
         }
     }
 }

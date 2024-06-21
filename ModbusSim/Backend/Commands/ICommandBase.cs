@@ -10,6 +10,6 @@ namespace Backend.Commands
     public interface ICommandBase
     {
         bool CanExecute();
-        ICommandResult Execute();
+        bool Execute();
     }
 }

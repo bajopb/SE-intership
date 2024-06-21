@@ -24,10 +24,11 @@ namespace Backend.Commands
             return true;
         }
 
-        public ICommandResult Execute()
+        public bool Execute()
         {
             _connection.Connect(address, port);
-            return new ConnectCommandResult(_connection.Client.Connected?"":"", _connection.Client.Connected);
+            return _connection.Client.Connected;
+
         }
     }
 }

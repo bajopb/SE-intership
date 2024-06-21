@@ -6,9 +6,22 @@
         xmlns:local="clr-namespace:Master"
         mc:Ignorable="d"
         Title="MainWindow" Height="469" Width="824">
-    <Grid Height="450" VerticalAlignment="Top" Margin="0,0,-17,0" Background="Gray">
-        <Button x:Name="btnConnect" Command="{Binding ConnectCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Content="Connect" HorizontalAlignment="Center" Margin="0,386,0,0" VerticalAlignment="Top" Width="172" Height="36"/>
-        <Button Content="Device 1" Command="{Binding ShowDevice}" HorizontalAlignment="Left" Margin="20,21,0,0" VerticalAlignment="Top" Height="96" Width="92"/>
 
+    <Window.Resources>
+        <Style TargetType="DataGridRow" x:Name="BaseStyle">
+            <EventSetter Event="MouseDoubleClick" Handler="DataGrid_MouseDoubleClick" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Height="450" VerticalAlignment="Top" Margin="0,0,-17,0" Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding Devices}" SelectionMode="Single" CanUserDeleteRows="False" CanUserResizeRows="False"
+                  SelectionUnit="FullRow" AutoGenerateColumns="False" Name="dgDevices">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Unit ID" Binding="{Binding UnitId}" IsReadOnly="True" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

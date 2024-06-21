@@ -18,4 +18,15 @@ namespace Backend.Models.Enums
         CONNECTED,
         DISCONNECTED,
     }
+    public enum RegType
+    {
+        HOLDING_REG,
+        INPUT_REG,
+    }
+    public enum ProcessType
+    {
+        TEMPERATURE,
+        TIME,
+        METHOD,
+    }
 }

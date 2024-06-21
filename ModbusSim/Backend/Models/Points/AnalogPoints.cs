@@ -10,7 +10,7 @@ namespace Backend.Models.Points
     public class AnalogPoints
     {
         private IDevice _device;
-        public int GlobalID=>_device.GlobalID;
+        public int UnitID=>_device.UnitID;
         public ushort HoldingRegister { get; set; }
         public ushort InputRegister { get; set; }
         public AnalogPoints(IDevice device, ushort holdingRegisterAddress, ushort inputRegisterAddress)

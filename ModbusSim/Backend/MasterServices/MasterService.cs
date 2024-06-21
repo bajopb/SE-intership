@@ -218,5 +218,26 @@ namespace Backend.MasterServices
                 Console.WriteLine("Error: Master is null.");
             }
         }
+
+        public async Task<ushort> ReadSingleHoldingRegister(byte slaveId, ushort startAddress)
+        {
+            if (Master != null)
+            {
+                try
+                {
+                    ushort[] hrs = await Master.ReadHoldingRegistersAsync(slaveId, (ushort)(40000 + startAddress), 1);
+                    return hrs[0];
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error: Master is null.");
+            }
+            throw new Exception("");
+        }
     }
 }

@@ -10,6 +10,12 @@
     <Compile Update="Views\DevicesViews\Device1View.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\DevicesViews\ProcessView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\DevicesViews\StepView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\FunctionsViews\ReadCoilsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,6 +34,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DevicesViews\Device1View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DevicesViews\ProcessView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DevicesViews\StepView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\FunctionsViews\ReadCoilsView.xaml">

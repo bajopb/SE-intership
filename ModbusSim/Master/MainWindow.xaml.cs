@@ -25,6 +25,7 @@ using Master.Models;
 using Master.Views.DevicesViews;
 using System.Runtime.CompilerServices;
 using Master.Views.Events;
+using Master.ViewModels;
 
 namespace Master
 {
@@ -36,6 +37,12 @@ namespace Master
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Device1View cw = new Device1View(dgDevices.SelectedItem as Device1ViewModel);
+            cw.Owner = this;
+            cw.ShowDialog();
         }
     }
 }

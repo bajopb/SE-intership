@@ -1,5 +1,4 @@
 ﻿using Master.ViewModels;
-using Master.Views.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,21 +16,23 @@ using System.Windows.Shapes;
 namespace Master.Views.DevicesViews
 {
     /// <summary>
-    /// Interaction logic for Device1View.xaml
+    /// Interaction logic for StepView.xaml
     /// </summary>
-    public partial class Device1View : Window
+    public partial class StepView : Window
     {
-        public Device1View()
+        public StepView()
         {
             InitializeComponent();
         }
-        public Device1View(Device1ViewModel dataContext):this()
+
+        public StepView(StepViewModel dataContext):this()
         {
             this.DataContext = dataContext;
         }
+
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            StepView cw = new StepView(dgSteps.SelectedItem as StepViewModel);
+            ProcessView cw = new ProcessView(dgSteps.SelectedItem as ProcessViewModel);
             cw.Owner = this;
             cw.ShowDialog();
         }

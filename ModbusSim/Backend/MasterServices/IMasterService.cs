@@ -56,6 +56,14 @@ namespace Backend.MasterServices
         /// <returns>A task representing the asynchronous operation. The task result contains an array of ushort values read from the device.</returns>
         Task<ushort[]> ReadMultipleHoldingRegisters(byte slaveId, ushort startAddress, ushort numberOfPoints);
         /// <summary>
+        /// Reads holding registers from a Modbus slave device.
+        /// </summary>
+        /// <param name="slaveId">The ID of the slave device.</param>
+        /// <param name="startAddress">The address to start reading from.</param>
+        /// <param name="numberOfPoints">The number of points to read.</param>
+        /// <returns>A task representing the asynchronous operation. The task result contains an array of ushort values read from the device.</returns>
+        Task<ushort> ReadSingleHoldingRegister(byte slaveId, ushort startAddress);
+        /// <summary>
         /// Writes a single coil to a Modbus slave device.
         /// </summary>
         /// <param name="slaveId">The ID of the slave device.</param>

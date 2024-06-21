@@ -14,7 +14,6 @@ namespace Master.Models
     /// </summary>
     public class SetPoint
     {
-        private IMasteraFactoryService _masterService;
         private byte deviceId;
         /// <summary>
         /// Address of the holding register.
@@ -31,38 +30,9 @@ namespace Master.Models
         /// <param name="deviceId">The ID of the Modbus device.</param>
         /// <param name="holdingRegisterAddress">The address of the holding register.</param>
         /// <param name="inputRegisterAddress">The address of the input register.</param>
-        public SetPoint(IMasteraFactoryService masterService, byte deviceId, ushort holdingRegisterAddress, ushort inputRegisterAddress) {
+        public SetPoint(ushort holdingRegisterAddress, ushort inputRegisterAddress) {
             HoldingRegister = holdingRegisterAddress;
             InputRegister = inputRegisterAddress;
-            this.deviceId = deviceId;
-            _masterService = masterService;
-        }
-        /// <summary>
-        /// Sets the value of the holding register.
-        /// </summary>
-        /// <param name="value">The value to set.</param>
-        public void SetValue(ushort value) {
-            if (_masterService.Master == null)
-            {
-                MessageBox.Show("Master is not connected.");
-                return;
-            }
-            _masterService.WriteSingleHoldingRegisters(deviceId, HoldingRegister, value);
-        }
-        /// <summary>
-        /// Gets the value from the input register.
-        /// </summary>
-        /// <returns>A task representing the asynchronous operation. The task result contains the value from the input register.</returns>
-        public async Task<ushort> GetProcessValue()
-        {
-            if (_masterService.Master == null)
-            {
-                throw new Exception("Master is not connected.");
-            }
-            else
-            {
-                return (await _masterService.ReadInputRegisters(deviceId, InputRegister, 1))[0];
-            }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Master.Interfaces;
+﻿using Backend.Interfaces;
+using Backend.Models.Enums;
+using Master.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +9,32 @@ using System.Threading.Tasks;
 
 namespace Master.Models.SecondStageModels
 {
-    public class GrindingStep
+    public class GrindingStep:IStep
     {
-        public SetPoint GrindingMethod { get; set; }
-        public SetPoint Temperature { get; set; }
-        public SetPoint Time { get; set; }
-        public IMasteraFactoryService Master { get; set; }
-        public GrindingStep(IMasteraFactoryService master, byte deviceId, ushort grindingMethodHRAddress, ushort grindingMethodIRAddress, ushort temperatureHRAddress, ushort temperatureIRAddress, 
-            ushort timeHRAddress, ushort timeIRAddress)
+        public Dictionary<ProcessType, SetPoint> Registers { get; private set; }
+
+        public GrindingStep(Dictionary<ProcessType, List<ushort>> dic)
         {
-            Master = master;
-            GrindingMethod = new SetPoint(Master, deviceId, grindingMethodHRAddress, grindingMethodIRAddress);
-            Temperature = new SetPoint(Master, deviceId, temperatureHRAddress, temperatureIRAddress);
-            Time = new SetPoint(Master, deviceId, timeHRAddress, timeIRAddress);
+            Registers = new Dictionary<ProcessType, SetPoint>();
+            SetRegisters(dic);
+        }
+        private void SetRegisters(Dictionary<ProcessType, List<ushort>> dic)
+        {
+            foreach (var kvp in dic)
+            {
+                if (kvp.Key == ProcessType.TEMPERATURE)
+                {
+                    Registers.Add(ProcessType.TEMPERATURE, new SetPoint(kvp.Value[0], kvp.Value[1]));
+                }
+                else if (kvp.Key == ProcessType.TIME)
+                {
+                    Registers.Add(ProcessType.TIME, new SetPoint(kvp.Value[0], kvp.Value[1]));
+                }
+                else if (kvp.Key == ProcessType.METHOD)
+                {
+                    Registers.Add(ProcessType.METHOD, new SetPoint(kvp.Value[0], kvp.Value[1]));
+                }
+            }
         }
     }
 }

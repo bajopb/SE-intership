@@ -1,4 +1,6 @@
-﻿using Backend.Models.ProcessSteps;
+﻿using Backend.MasterServices;
+using Backend.Models.Enums;
+using Backend.Models.ProcessSteps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,8 @@ namespace Backend.Interfaces
 {
     public interface IDevice
     {
-        int GlobalID { get; }
-        IMasterFactoryService MasterFactory { get; }
+        IMasterService MasterService { get; }
         byte UnitID { get; }
-        List<IStep> Steps { get; }
+        Dictionary<StepType, IStep> Steps { get; }
     }
 }
