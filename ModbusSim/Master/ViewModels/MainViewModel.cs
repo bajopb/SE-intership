@@ -1,12 +1,11 @@
 ﻿using Backend.CommandExecutor;
 using Backend.Commands;
-using Backend.Commands.CommandResult;
 using Backend.Interfaces;
 using Backend.Models.Enums;
+using Backend.Models.ProcessSteps;
 using Master.Commands;
-using Master.Interfaces;
 using Master.Models;
-using Master.Services;
+using Master.Models.SecondStageModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,21 +20,19 @@ namespace Master.ViewModels
 {
     public class MainViewModel:ViewModelBase
     {
-        //TODO
-        //lista uredjaja
-        //metoda ConfigToDevice
         private CommandExecutor _commandExecutor;
-        public ObservableCollection<Device1ViewModel> Devices { get; set; }
-        public ICommand ConnectCommand { get; }
-        public ICommand ShowDevice { get; }
+        public ObservableCollection<Device> Devices { get; set; }
+
+        public ICommand Send {  get; set; }
         public MainViewModel() {
-            Devices = new ObservableCollection<Device1ViewModel>();
+            Devices = new ObservableCollection<Device>();
             _commandExecutor = new CommandExecutor();
             Connect();
+            Send = new RelayCommand(ExecuteSendCommand);
         }
         private async Task Connect()
         {
-            ConnectCommandResult res = await _commandExecutor.Connect();
+            var res = await _commandExecutor.Connect();
             List<ConfigItem> items = new List<ConfigItem>();
             foreach(var item in res.ConfigItems)
             {
@@ -47,13 +44,22 @@ namespace Master.ViewModels
         private void InitializeDevicesCollection(List<ConfigItem> items)
         {
             foreach(var item in items) {
-                Devices.Add(new Device1ViewModel(ConfigToDevices(item), _commandExecutor));
+                Devices.Add(new Device(item.UnitID, item.Registers));
             }
         }
 
-        public Device ConfigToDevices(ConfigItem item) 
+        private void ExecuteSendCommand(object parameter)
         {
-            return new Device(item.UnitID, item.Registers);
+            if (parameter is SetPoint setPoint)
+            {
+                byte unitId = setPoint.DeviceId;
+                StepType stepType = setPoint.StepType;
+                ProcessType processType = setPoint.ProcessType;
+                ushort holdingRegister = setPoint.HoldingRegister;
+
+                
+            }
         }
+
     }
 }

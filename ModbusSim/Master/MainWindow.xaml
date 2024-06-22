@@ -7,21 +7,43 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="469" Width="824">
 
-    <Window.Resources>
-        <Style TargetType="DataGridRow" x:Name="BaseStyle">
-            <EventSetter Event="MouseDoubleClick" Handler="DataGrid_MouseDoubleClick" />
-        </Style>
-    </Window.Resources>
+    
 
     <Grid Height="450" VerticalAlignment="Top" Margin="0,0,-17,0" Background="Gray">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <DataGrid ItemsSource="{Binding Devices}" SelectionMode="Single" CanUserDeleteRows="False" CanUserResizeRows="False"
-                  SelectionUnit="FullRow" AutoGenerateColumns="False" Name="dgDevices">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Unit ID" Binding="{Binding UnitId}" IsReadOnly="True" Width="*" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <ItemsControl ItemsSource="{Binding Devices}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Expander Header="{Binding UnitId}">
+
+                        <ItemsControl ItemsSource="{Binding Steps}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Expander Header="{Binding Key}">
+
+                                        <ItemsControl ItemsSource="{Binding Value.Registers}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Expander Header="{Binding Key}">
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Value.HoldingRegister}" />
+                                                            <Button Content="Send"
+                                                                    Command="{Binding DataContext.Send, 
+                                                                    RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                    CommandParameter="{Binding Value}" />
+                                                        </StackPanel>
+                                                    </Expander>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                    </Expander>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </Expander>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>

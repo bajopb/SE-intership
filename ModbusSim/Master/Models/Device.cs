@@ -1,5 +1,4 @@
 ﻿using Backend.Models.Enums;
-using Master.Interfaces;
 using Master.Models.SecondStageModels;
 using NModbus;
 using System;
@@ -31,19 +30,19 @@ namespace Master.Models
             {
                 if (item.Key == StepType.GRINDING_S)
                 {
-                    Steps.Add(StepType.GRINDING_S, new GrindingStep(item.Value));
+                    Steps.Add(StepType.GRINDING_S, new GrindingStep(UnitId, StepType.GRINDING_S, item.Value));
                 }
                 else if (item.Key == StepType.SAHARIFICATION_S)
                 {
-                    Steps.Add(StepType.SAHARIFICATION_S, new SaharificationStep(item.Value));
+                    Steps.Add(StepType.SAHARIFICATION_S, new SaharificationStep(UnitId, StepType.SAHARIFICATION_S, item.Value));
                 }
                 else if (item.Key == StepType.MASHOUT_S)
                 {
-                    Steps.Add(StepType.MASHOUT_S, new MashoutStep(item.Value));
+                    Steps.Add(StepType.MASHOUT_S, new MashoutStep(UnitId, StepType.MASHOUT_S, item.Value));
                 }
                 else if (item.Key == StepType.FILTERING_S)
                 {
-                    Steps.Add(StepType.FILTERING_S, new FilteringStep(item.Value));
+                    Steps.Add(StepType.FILTERING_S, new FilteringStep(UnitId, StepType.FILTERING_S, item.Value));
                 }
             }
         }

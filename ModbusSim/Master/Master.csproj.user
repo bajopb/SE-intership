@@ -7,51 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\DevicesViews\Device1View.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\DevicesViews\ProcessView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\DevicesViews\StepView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\FunctionsViews\ReadCoilsView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\FunctionsViews\WriteMultiCoilsView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\FunctionsViews\WriteSingleCoilView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\FunctionsViews\WriteSingleHoldingRegisterView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\DevicesViews\Device1View.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\DevicesViews\ProcessView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\DevicesViews\StepView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\FunctionsViews\ReadCoilsView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\FunctionsViews\WriteMultiCoilsView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\FunctionsViews\WriteSingleCoilView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\FunctionsViews\WriteSingleHoldingRegisterView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

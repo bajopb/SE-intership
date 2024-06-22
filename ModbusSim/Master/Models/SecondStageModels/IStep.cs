@@ -10,6 +10,7 @@ namespace Master.Models.SecondStageModels
 {
     public interface IStep
     {
+        StepType StepType { get; }
         Dictionary<ProcessType, SetPoint> Registers { get; }
     }
 }

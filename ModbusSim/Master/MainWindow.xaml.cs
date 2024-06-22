@@ -14,18 +14,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Master.Interfaces;
-using Master.Services;
 using NModbus;
 using NModbus.Device;
 using NModbus.Message;
 using System.Diagnostics.Metrics;
-using Master.Views;
 using Master.Models;
-using Master.Views.DevicesViews;
 using System.Runtime.CompilerServices;
-using Master.Views.Events;
 using Master.ViewModels;
+using Backend.Models.Enums;
+using System.Reflection.Metadata;
 
 namespace Master
 {
@@ -37,12 +34,6 @@ namespace Master
         public MainWindow()
         {
             InitializeComponent();
-        }
-        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Device1View cw = new Device1View(dgDevices.SelectedItem as Device1ViewModel);
-            cw.Owner = this;
-            cw.ShowDialog();
         }
     }
 }

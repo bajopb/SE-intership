@@ -1,4 +1,4 @@
-﻿using Master.Interfaces;
+﻿using Backend.Models.Enums;
 using NModbus;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,9 @@ namespace Master.Models
     /// </summary>
     public class SetPoint
     {
-        private byte deviceId;
+        public byte DeviceId { get; private set; }
+        public StepType StepType { get; private set; }
+        public ProcessType ProcessType { get; private set; }
         /// <summary>
         /// Address of the holding register.
         /// </summary>
@@ -30,9 +32,12 @@ namespace Master.Models
         /// <param name="deviceId">The ID of the Modbus device.</param>
         /// <param name="holdingRegisterAddress">The address of the holding register.</param>
         /// <param name="inputRegisterAddress">The address of the input register.</param>
-        public SetPoint(ushort holdingRegisterAddress, ushort inputRegisterAddress) {
+        public SetPoint(byte deviceId, StepType stepType, ProcessType processType, ushort holdingRegisterAddress, ushort inputRegisterAddress) {
             HoldingRegister = holdingRegisterAddress;
             InputRegister = inputRegisterAddress;
+            DeviceId = deviceId;
+            StepType = stepType;
+            ProcessType = processType;
         }
     }
 }
