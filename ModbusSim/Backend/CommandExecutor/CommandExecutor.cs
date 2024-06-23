@@ -38,17 +38,35 @@ namespace Backend.CommandExecutor
             }
             else
             {
-                return new ConnectCommandResult("Connection error.", true, null);
+                return new ConnectCommandResult("Connection error.", false, null) ;
             }
         }
-        
-        private void SetDeviceCollection(List<IConfigItem> list)
+        public async Task<ushort> Read(byte unitId, StepType stepType, ProcessType processType, ushort address)
         {
-            foreach (IConfigItem item in list)
+            if (GetRegType(address) == RegType.INPUT_REG)
             {
-                DeviceCollection.Add(item.UnitID, new Device1(MasterService, item.UnitID, item.Registers));
-                
+                return await (MasterService.ReadSingleInputRegister(unitId, address));
             }
+            throw new NotImplementedException();
+        }
+        public async Task Write(byte unitId, StepType stepType, ProcessType processType, ushort address, ushort value)
+        {
+            if (GetRegType(address) == RegType.HOLDING_REG)
+            {
+                await MasterService.WriteSingleHoldingRegisters(unitId, address, value);
+            }
+            else 
+            { 
+                throw new NotImplementedException();
+            }
+        }
+
+        private RegType GetRegType(ushort address){
+            if (address > 40000)
+                return RegType.HOLDING_REG;
+            else if (address > 30000)
+                return RegType.INPUT_REG;
+            throw new ArgumentException("Incorrect address.");
         }
     }
 }

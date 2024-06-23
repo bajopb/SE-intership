@@ -4,46 +4,72 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Master"
+        xmlns:viewModels="clr-namespace:Master.ViewModels"
+
         mc:Ignorable="d"
         Title="MainWindow" Height="469" Width="824">
+    <Grid Background="Gray">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Devices}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Expander Header="{Binding UnitId}" Margin="10,0,0,0">
+                            <ItemsControl ItemsSource="{Binding Steps}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Expander Header="{Binding Key}" Margin="20,0,0,0">
+                                            <ItemsControl ItemsSource="{Binding Value.Registers}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Expander Header="{Binding Key}" Margin="30,0,0,0">
+                                                            <Expander.Style>
+                                                                <Style TargetType="Expander">
+                                                                    <EventSetter Event="Expanded" Handler="OnExpanderExpanded"/>
+                                                                </Style>
+                                                            </Expander.Style>
+                                                            <Grid Margin="10,0,0,0">
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="Auto"/>
+                                                                    <RowDefinition Height="Auto"/>
+                                                                </Grid.RowDefinitions>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                </Grid.ColumnDefinitions>
 
-    
-
-    <Grid Height="450" VerticalAlignment="Top" Margin="0,0,-17,0" Background="Gray">
-        <ItemsControl ItemsSource="{Binding Devices}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Expander Header="{Binding UnitId}">
-
-                        <ItemsControl ItemsSource="{Binding Steps}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Expander Header="{Binding Key}">
-
-                                        <ItemsControl ItemsSource="{Binding Value.Registers}">
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Expander Header="{Binding Key}">
-                                                        <StackPanel>
-                                                            <TextBlock Text="{Binding Value.HoldingRegister}" />
-                                                            <Button Content="Send"
-                                                                    Command="{Binding DataContext.Send, 
-                                                                    RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                    CommandParameter="{Binding Value}" />
-                                                        </StackPanel>
-                                                    </Expander>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-
-                                    </Expander>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-
-                    </Expander>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                                                                <GroupBox Header="Current Value" Width="100" Grid.Row="0" Grid.Column="0">
+                                                                    <TextBlock Background="White" Text="{Binding DataContext.IRValue, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                                                           Width="90"
+                                                                           Height="20"/>
+                                                                </GroupBox>
+                                                                <Label Content="Commanded Value: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,20,0,0" />
+                                                                <TextBox Text="{Binding DataContext.HRValue, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                                                       Width="50"
+                                                                       Height="20"
+                                                                       Margin="0,20,0,0"
+                                                                       Grid.Row="1" Grid.Column="1"/>
+                                                                <Button Content="Set"
+                                                                        Command="{Binding DataContext.Send, 
+                                                                        RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                        CommandParameter="{Binding Value}"
+                                                                        Width="50"
+                                                                        Height="20"
+                                                                        Grid.Row="1" Grid.Column="2"
+                                                                        Margin="5,20,0,0"/>
+                                                            </Grid>
+                                                        </Expander>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Expander>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Expander>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Window>

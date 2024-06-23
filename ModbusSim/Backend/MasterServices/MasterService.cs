@@ -75,7 +75,7 @@ namespace Backend.MasterServices
             {
                 try
                 {
-                    bool[] dis = await Master.ReadInputsAsync(slaveId, (ushort)(10000 + startAddress), numberOfPoints);
+                    bool[] dis = await Master.ReadInputsAsync(slaveId, startAddress, numberOfPoints);
                     return dis;
                 }
                 catch (Exception ex)
@@ -102,7 +102,7 @@ namespace Backend.MasterServices
             {
                 try
                 {
-                    ushort[] irs = await Master.ReadInputRegistersAsync(slaveId, (ushort)(30000 + startAddress), numberOfPoints);
+                    ushort[] irs = await Master.ReadInputRegistersAsync(slaveId, startAddress, numberOfPoints);
                     return irs;
                 }
                 catch (Exception ex)
@@ -129,7 +129,7 @@ namespace Backend.MasterServices
             {
                 try
                 {
-                    ushort[] hrs = await Master.ReadHoldingRegistersAsync(slaveId, (ushort)(40000 + startAddress), numberOfPoints);
+                    ushort[] hrs = await Master.ReadHoldingRegistersAsync(slaveId, startAddress, numberOfPoints);
                     return hrs;
                 }
                 catch (Exception ex)
@@ -206,7 +206,7 @@ namespace Backend.MasterServices
             {
                 try
                 {
-                    await Master.WriteSingleRegisterAsync(slaveId, (ushort)(40000 + startAddress), value);
+                    await Master.WriteSingleRegisterAsync(slaveId, startAddress, value);
                 }
                 catch (Exception ex)
                 {
@@ -225,7 +225,27 @@ namespace Backend.MasterServices
             {
                 try
                 {
-                    ushort[] hrs = await Master.ReadHoldingRegistersAsync(slaveId, (ushort)(40000 + startAddress), 1);
+                    ushort[] hrs = await Master.ReadHoldingRegistersAsync(slaveId, startAddress, 1);
+                    return hrs[0];
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error: Master is null.");
+            }
+            throw new Exception("");
+        }
+        public async Task<ushort> ReadSingleInputRegister(byte slaveId, ushort startAddress)
+        {
+            if (Master != null)
+            {
+                try
+                {
+                    ushort[] hrs = await Master.ReadInputRegistersAsync(slaveId, startAddress, 1);
                     return hrs[0];
                 }
                 catch (Exception ex)

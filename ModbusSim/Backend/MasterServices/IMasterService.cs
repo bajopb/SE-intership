@@ -63,6 +63,7 @@ namespace Backend.MasterServices
         /// <param name="numberOfPoints">The number of points to read.</param>
         /// <returns>A task representing the asynchronous operation. The task result contains an array of ushort values read from the device.</returns>
         Task<ushort> ReadSingleHoldingRegister(byte slaveId, ushort startAddress);
+        Task<ushort> ReadSingleInputRegister(byte slaveId, ushort startAddress);
         /// <summary>
         /// Writes a single coil to a Modbus slave device.
         /// </summary>

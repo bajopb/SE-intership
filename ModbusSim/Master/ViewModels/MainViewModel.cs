@@ -24,11 +24,13 @@ namespace Master.ViewModels
         public ObservableCollection<Device> Devices { get; set; }
 
         public ICommand Send {  get; set; }
+        public ICommand LoadIRValueCommand { get; }
         public MainViewModel() {
             Devices = new ObservableCollection<Device>();
             _commandExecutor = new CommandExecutor();
             Connect();
             Send = new RelayCommand(ExecuteSendCommand);
+            LoadIRValueCommand = new RelayCommand(ExecuteLoadIRValue);
         }
         private async Task Connect()
         {
@@ -48,7 +50,7 @@ namespace Master.ViewModels
             }
         }
 
-        private void ExecuteSendCommand(object parameter)
+        private async void ExecuteSendCommand(object parameter)
         {
             if (parameter is SetPoint setPoint)
             {
@@ -56,8 +58,47 @@ namespace Master.ViewModels
                 StepType stepType = setPoint.StepType;
                 ProcessType processType = setPoint.ProcessType;
                 ushort holdingRegister = setPoint.HoldingRegister;
+                await _commandExecutor.Write((byte)(unitId+1), stepType, processType, holdingRegister, HRValue);
+                HRValue = 0;
+            }
+        }
+        private async void ExecuteLoadIRValue(object parameter)
+        {
+            if (parameter is SetPoint setPoint)
+            {
+                byte unitId = setPoint.DeviceId;
+                StepType stepType = setPoint.StepType;
+                ProcessType processType = setPoint.ProcessType;
+                ushort inputRegister = setPoint.InputRegister;
+                IRValue = await _commandExecutor.Read((byte)(unitId + 1), stepType, processType, inputRegister);
+            }
+        }
 
-                
+
+        private ushort irValue;
+        public ushort IRValue
+        {
+            get 
+            {
+                return irValue;    
+            }
+            set 
+            {
+                irValue = value; 
+                OnPropertyChanged(nameof(IRValue));
+            }
+        }
+        private ushort hrValue;
+        public ushort HRValue
+        {
+            get
+            {
+                return hrValue;
+            }
+            set
+            {
+                hrValue = value;
+                OnPropertyChanged(nameof(HRValue));
             }
         }
 

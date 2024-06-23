@@ -35,5 +35,20 @@ namespace Master
         {
             InitializeComponent();
         }
+
+        private void OnExpanderExpanded(object sender, RoutedEventArgs e)
+        {
+            var expander = sender as Expander;
+            if (expander != null)
+            {
+                var setPointPair = (KeyValuePair<ProcessType, SetPoint>)expander.DataContext;
+                var viewModel = DataContext as MainViewModel;
+                if (viewModel != null && viewModel.LoadIRValueCommand.CanExecute(setPointPair.Value))
+                {
+                    viewModel.LoadIRValueCommand.Execute(setPointPair.Value);
+                }
+            }
+        }
     }
+    
 }
