@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,10 +14,6 @@ namespace Backend.Connection
     public interface IConnection
     {
         /// <summary>
-        /// Gets the TCP client used for the connection.
-        /// </summary>
-        TcpClient Client { get; }
-        /// <summary>
         /// Connects to the remote server asynchronously.
         /// </summary>
         /// <returns>A task representing the asynchronous connect operation.</returns>
@@ -24,6 +21,7 @@ namespace Backend.Connection
         /// <summary>
         /// Disconnects from the remote server.
         /// </summary>
-        void Disconect();
+        void Disconnect();
+        bool IsConnected();
     }
 }

@@ -12,7 +12,6 @@ namespace Backend.CommandExecutor
 {
     internal interface ICommandExecutor
     {
-        IMasterService MasterService { get; }
         Dictionary<int, IDevice> DeviceCollection { get; }
         ICommandResult Execute(ICommandBase command);
     }

@@ -1,5 +1,5 @@
-﻿using NModbus;
-using Slave.Interfaces;
+﻿using Backend.Models.Enums;
+using NModbus;
 using Slave.Models.Points;
 using System;
 using System.Collections.Generic;
@@ -11,47 +11,53 @@ namespace Slave.Models
 {
     public class Device
     {
-        public IModbusSlave Slave { get; set; }
-        public byte DeviceID { get; set; }
-        public AnalogPoints GrindingTemperatureRegisters { get; set; }
-        public AnalogPoints SaharificationTemperatureRegisters { get; set; }
-        public AnalogPoints MashoutTemperatureRegisters { get; set; }
-        public AnalogPoints FilteringTemperatureRegisters { get; set; }
-        public AnalogPoints GrindingTimeRegisters { get; set; }
-        public AnalogPoints SaharificationTimeRegisters { get; set; }
-        public AnalogPoints MashoutTimeRegisters { get; set; }
-        public AnalogPoints FilteringTimeRegisters { get; set; }
-        public AnalogPoints GrindingMethodRegisters { get; set; }
-        public AnalogPoints SaharificationMethodRegisters { get; set; }
-        public Device() { }
-        public Device(IModbusSlave slave, byte deviceId) {
-            Slave = slave;
+        public byte DeviceID { get; private set; }
+        public Dictionary<StepType, Dictionary<ProcessType, AnalogPoints>> Registers { get; private set; }
+        public Device(byte deviceId, Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> dic) {
             DeviceID = deviceId;
+            Registers = new Dictionary<StepType, Dictionary<ProcessType, AnalogPoints>>();
+            foreach (var kvp in dic)
+            {
+                Registers.Add(kvp.Key, SetAnalogPoints(kvp.Value));
+            }
         }
-        public void SetRegistersForGrinding(ushort methodHoldingRegister, ushort methodInputRegister, ushort temperatureHoldingRegister, ushort tempreatureInputRegister,
-            ushort timeHoldingRegister, ushort timeInputRegister)
+        public List<ushort> GetAllAdresses()
         {
-            GrindingTemperatureRegisters = new AnalogPoints(Slave, temperatureHoldingRegister, tempreatureInputRegister);
-            GrindingMethodRegisters = new AnalogPoints(Slave, methodHoldingRegister, methodInputRegister);
-            GrindingTimeRegisters = new AnalogPoints(Slave, timeHoldingRegister, timeInputRegister);
+            List<ushort> addresses= new List<ushort>();
+            foreach(var step in Registers)
+            {
+                foreach(var process in step.Value)
+                {
+                    addresses.Add(process.Value.HoldingRegisterAddress);
+                    addresses.Add(process.Value.InputRegisterAddress);
+                }
+            }
+            return addresses;
         }
-        public void SetRegistersForSaharification(ushort methodHoldingRegister, ushort methodInputRegister, ushort temperatureHoldingRegister, ushort tempreatureInputRegister,
-            ushort timeHoldingRegister, ushort timeInputRegister) 
+        public void SetRegisterValue(ushort address, ushort value)
         {
-            SaharificationTemperatureRegisters = new AnalogPoints(Slave, temperatureHoldingRegister, tempreatureInputRegister);
-            SaharificationTimeRegisters = new AnalogPoints(Slave, timeHoldingRegister, timeInputRegister);
-            SaharificationMethodRegisters = new AnalogPoints(Slave, methodHoldingRegister, methodInputRegister);
+            foreach(var step in Registers)
+            {
+                foreach(var process in step.Value)
+                {
+                    if (process.Value.HoldingRegisterAddress == address)
+                    {
+                        process.Value.HoldingRegisterValue = value;
+                    }
+                    if (process.Value.InputRegisterAddress == address)
+                    {
+                        process.Value.InputRegisterValue = value;
+                    }
+                }
+            }
         }
-        public void SetRegistersForMashout(ushort temperatureHoldingRegister, ushort tempreatureInputRegister,
-            ushort timeHoldingRegister, ushort timeInputRegister) {
-            MashoutTemperatureRegisters = new AnalogPoints(Slave, temperatureHoldingRegister, tempreatureInputRegister);
-            MashoutTimeRegisters = new AnalogPoints(Slave, timeHoldingRegister, timeInputRegister);
-        }
-        public void SetRegistersForFiltering(ushort temperatureHoldingRegister, ushort tempreatureInputRegister,
-            ushort timeHoldingRegister, ushort timeInputRegister)
-        {
-            FilteringTemperatureRegisters = new AnalogPoints(Slave, temperatureHoldingRegister, tempreatureInputRegister);
-            FilteringTimeRegisters = new AnalogPoints(Slave, timeHoldingRegister, timeInputRegister);
+        private Dictionary<ProcessType, AnalogPoints> SetAnalogPoints(Dictionary<ProcessType, List<ushort>> dic) {
+            Dictionary<ProcessType, AnalogPoints> res=new Dictionary<ProcessType, AnalogPoints>();
+            foreach(var item in dic)
+            {
+                res.Add(item.Key, new AnalogPoints(item.Value[0], item.Value[1]));
+            }
+            return res;
         }
     }
 }

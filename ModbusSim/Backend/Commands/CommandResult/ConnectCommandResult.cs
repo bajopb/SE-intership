@@ -17,6 +17,10 @@ namespace Backend.Commands.CommandResult
             Message = message;
             IsSuccess = success;
             ConfigItems = configItems;
+        } 
+        public ConnectCommandResult(string message, bool success) {
+            Message = message;
+            IsSuccess = success;
         }
     }
 }

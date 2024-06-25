@@ -14,8 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Slave.Interfaces;
-using Slave.Services;
 using NModbus;
 using NModbus.Data;
 using NModbus.Device;

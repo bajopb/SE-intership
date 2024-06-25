@@ -1,5 +1,4 @@
 ﻿using NModbus;
-using Slave.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +9,13 @@ namespace Slave.Models.Points
 {
     public class AnalogPoints
     {
-        private readonly IModbusSlave _slave;
-        public ushort HoldingRegister { get; set; }
-        public ushort InputRegister { get; set; }
-        public AnalogPoints(IModbusSlave slave, ushort holdingRegister, ushort inputRegister) {
-            _slave = slave;
-            HoldingRegister = holdingRegister;
-            InputRegister = inputRegister;
-        }
-        public ushort ReadHoldingRegister() {
-            return _slave.DataStore.HoldingRegisters.ReadPoints(HoldingRegister, 1)[0];
-        }
-        public ushort ReadInputRegister()
-        {
-            return _slave.DataStore.InputRegisters.ReadPoints(InputRegister, 1)[0];
-        }
-        public void WriteHoldingRegister(ushort value)
-        {
-            _slave.DataStore.HoldingRegisters.WritePoints(HoldingRegister, new ushort[] { value});
-        }
-        public void WriteInputRegister(ushort value)
-        {
-            _slave.DataStore.InputRegisters.WritePoints(InputRegister, new ushort[] { value });
+        public ushort HoldingRegisterAddress { get; set; }
+        public ushort InputRegisterAddress { get; set; }
+        public ushort HoldingRegisterValue { get; set; }
+        public ushort InputRegisterValue { get; set; }
+        public AnalogPoints(ushort holdingRegister, ushort inputRegister) {
+            HoldingRegisterAddress = holdingRegister;
+            InputRegisterAddress = inputRegister;
         }
     }
 }

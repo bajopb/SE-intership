@@ -1,6 +1,4 @@
-﻿using Slave.Interfaces;
-using Slave.Services;
-using Slave.ViewModels;
+﻿using Slave.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,18 +14,14 @@ namespace Slave
     /// </summary>
     public partial class App : Application
     {
-        private readonly IConnectionService _connectionService;
-        private ISlaveFactory _factory;
         public App()
         {
-            _connectionService = new ConnectionService();
-            _factory=new SlaveFactoryService();
         }
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_connectionService, _factory)
+                DataContext = new MainViewModel()
             };
             MainWindow.Show();
             base.OnStartup(e);

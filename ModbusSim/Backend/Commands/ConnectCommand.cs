@@ -27,8 +27,7 @@ namespace Backend.Commands
         public bool Execute()
         {
             _connection.Connect(address, port);
-            return _connection.Client.Connected;
-
+            return _connection.IsConnected();
         }
     }
 }

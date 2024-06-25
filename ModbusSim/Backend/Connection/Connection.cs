@@ -11,7 +11,7 @@ namespace Backend.Connection
     /// <summary>
     /// Class for managing a TCP connection.
     /// </summary>
-    public class Connection:IConnection
+    public class Connection
     {
         /// <summary>
         /// Gets the TCP client used for the connection.

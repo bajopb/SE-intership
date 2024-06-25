@@ -8,54 +8,52 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="498*"/>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="43*"/>
-            <ColumnDefinition Width="250*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Device 1" FontSize="23" HorizontalAlignment="Left" Margin="352,10,0,0" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding GrindingMethodHR}"  HorizontalAlignment="Left" Margin="166,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox Text="{Binding GrindingTemperatureHR}" HorizontalAlignment="Left" Margin="166,105,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox Text="{Binding GrindingTimeHR}" HorizontalAlignment="Left" Margin="166,131,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox Text="{Binding SaharificationMethodHR}" HorizontalAlignment="Left" Margin="166,157,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox Text="{Binding SaharificationTemperatureHR}" HorizontalAlignment="Left" Margin="166,183,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox Text="{Binding SaharificationTimeHR}" HorizontalAlignment="Left" Margin="166,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="60"/>
-        <TextBox Text="{Binding MashoutTemperatureHR}" HorizontalAlignment="Left" Margin="166,234,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox Text="{Binding MashoutTimeHR}" HorizontalAlignment="Left" Margin="166,262,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox Text="{Binding FilteringTemperatureHR}" HorizontalAlignment="Left" Margin="166,290,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox Text="{Binding FilteringTimeHR}" HorizontalAlignment="Left" Margin="166,316,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <Label Content="Grinder Method" HorizontalAlignment="Left" Margin="71,74,0,0" VerticalAlignment="Top"/>
-        <Label Content="Grinder Time" HorizontalAlignment="Left" Margin="87,127,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.299,-0.894"/>
-        <Label Content="Saharification Method" HorizontalAlignment="Left" Margin="39,153,0,0" VerticalAlignment="Top"/>
-        <Label Content="Saharification Temperature" HorizontalAlignment="Left" Margin="14,179,0,0" VerticalAlignment="Top"/>
-        <Label Content="Saharification Time" HorizontalAlignment="Left" Margin="55,0,0,0" VerticalAlignment="Center"/>
-        <Label Content="Filtering Temperature" HorizontalAlignment="Left" Margin="43,286,0,0" VerticalAlignment="Top"/>
-        <Label Content="Grinder Temperature" HorizontalAlignment="Left" Margin="46,101,0,0" VerticalAlignment="Top"/>
-        <Label Content="Filtering Time" HorizontalAlignment="Left" Margin="84,312,0,0" VerticalAlignment="Top"/>
-        <Label Content="Mashout Temperature" HorizontalAlignment="Left" Margin="39,230,0,0" VerticalAlignment="Top"/>
-        <Label Content="Mashout Time" HorizontalAlignment="Left" Margin="80,258,0,0" VerticalAlignment="Top"/>
-        <Label Content="Holding Registers" HorizontalAlignment="Left" Margin="144,48,0,0" VerticalAlignment="Top"/>
-        <TextBox  Text="{Binding GrindingMethodIR, UpdateSourceTrigger=PropertyChanged}"   HorizontalAlignment="Left" Margin="315,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox  Text="{Binding GrindingTemperatureIR, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="315,105,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox  Text="{Binding GrindingTimeIR, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="315,131,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox  Text="{Binding SaharificationMethodIR, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="315,157,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox  Text="{Binding SaharificationTemperatureIR, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="315,183,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox  Text="{Binding SaharificationTimeIR, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="315,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center" Width="60"/>
-        <TextBox  Text="{Binding MashoutTemperatureIR, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="315,234,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox  Text="{Binding MashoutTimeIR, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="315,262,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox  Text="{Binding FilteringTemperatureIR, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="315,290,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <TextBox  Text="{Binding FilteringTimeIR, UpdateSourceTrigger=PropertyChanged}"   HorizontalAlignment="Left" Margin="315,316,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
-        <Label Content="Input Registers" HorizontalAlignment="Left" Margin="301,47,0,0" VerticalAlignment="Top"/>
-        <Button Content="Start" Command="{Binding StartCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" HorizontalAlignment="Left" Margin="324,364,0,0" VerticalAlignment="Top" Width="152" Height="43"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30001" HorizontalAlignment="Left" Margin="380,76,0,0" VerticalAlignment="Top" Width="25"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30002" HorizontalAlignment="Left" Margin="380,103,0,0" VerticalAlignment="Top" Width="25"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30003" HorizontalAlignment="Left" Margin="380,129,0,0" VerticalAlignment="Top" Width="25"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30004" HorizontalAlignment="Left" Margin="380,155,0,0" VerticalAlignment="Top" Width="25"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30005" HorizontalAlignment="Left" Margin="380,181,0,0" VerticalAlignment="Top" Width="25"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30006" HorizontalAlignment="Left" Margin="380,0,0,0" VerticalAlignment="Center" Width="25"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30007" HorizontalAlignment="Left" Margin="380,232,0,0" VerticalAlignment="Top" Width="25"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30008" HorizontalAlignment="Left" Margin="380,260,0,0" VerticalAlignment="Top" Width="25"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30009" HorizontalAlignment="Left" Margin="380,288,0,0" VerticalAlignment="Top" Width="25"/>
-        <Button Content="Set" Command="{Binding SetInputRegisterCommand}" CommandParameter="30010" HorizontalAlignment="Left" Margin="380,314,0,0" VerticalAlignment="Top" Width="25"/>
+
+        <ListBox ItemsSource="{Binding Devices}" 
+                 SelectedItem="{Binding SelectedDevice}" 
+                 DisplayMemberPath="DeviceID" 
+                 Grid.Column="0"/>
+
+        <ContentControl Content="{Binding SelectedDevice}" Grid.Column="1">
+            <ContentControl.ContentTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="Device Details" FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="{Binding DeviceID}" />
+
+                        <ItemsControl ItemsSource="{Binding Registers}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Key}" FontWeight="Bold"/>
+                                        <ItemsControl ItemsSource="{Binding Value}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Vertical">
+                                                        <TextBlock Text="{Binding Key}" FontWeight="Bold"/>
+                                                        <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                                                            <Label Content="Holding Register Value: "/>
+                                                            <TextBlock Text="{Binding Value.HoldingRegisterValue}" Margin="0,5,0,0"/>
+                                                        </StackPanel>
+                                                        <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                                                            <Label Content="Input Register Value: "/>
+                                                            <TextBox Text="{Binding DataContext.InputRegisterValue, RelativeSource={RelativeSource AncestorType=Window}}" Width="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                                                            <Button Content="Set" Command="{Binding DataContext.SetIRValueCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Value.InputRegisterAddress}"></Button>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ContentControl.ContentTemplate>
+        </ContentControl>
     </Grid>
 </Window>

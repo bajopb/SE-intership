@@ -23,15 +23,16 @@ namespace Backend.CommandExecutor
         public Dictionary<byte, IDevice> DeviceCollection { get; private set; }
         public CommandExecutor() {
             configuration=new ConfigReader();
-            _connection = new Connection.Connection();
+            _connection = new MasterConnection();
             MasterService= new MasterService();
         }
         public async Task<ConnectCommandResult> Connect()
         {
             await _connection.Connect(configuration.Address, configuration.Port);
-            if (_connection.Client.Connected)
+            if (_connection.IsConnected())
             {
-                MasterService.Client=_connection.Client;
+                if(_connection is MasterConnection connection)
+                MasterService.Client=connection.Client;
                 MasterService.CreateMaster();
                 List<IConfigItem> list= configuration.GetConfigurationItems();
                 return new ConnectCommandResult("Connected", true, list);
