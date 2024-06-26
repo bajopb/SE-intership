@@ -13,9 +13,9 @@
         </Grid.ColumnDefinitions>
 
         <ListBox ItemsSource="{Binding Devices}" 
-                 SelectedItem="{Binding SelectedDevice}" 
-                 DisplayMemberPath="DeviceID" 
-                 Grid.Column="0"/>
+             SelectedItem="{Binding SelectedDevice}" 
+             DisplayMemberPath="DeviceID" 
+             Grid.Column="0"/>
 
         <ContentControl Content="{Binding SelectedDevice}" Grid.Column="1">
             <ContentControl.ContentTemplate>
@@ -40,7 +40,7 @@
                                                         </StackPanel>
                                                         <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                                                             <Label Content="Input Register Value: "/>
-                                                            <TextBox Text="{Binding DataContext.InputRegisterValue, RelativeSource={RelativeSource AncestorType=Window}}" Width="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                                                            <TextBox Text="{Binding Value.InputRegisterValue, Mode=TwoWay}" Width="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
                                                             <Button Content="Set" Command="{Binding DataContext.SetIRValueCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Value.InputRegisterAddress}"></Button>
                                                         </StackPanel>
                                                     </StackPanel>
@@ -56,4 +56,5 @@
             </ContentControl.ContentTemplate>
         </ContentControl>
     </Grid>
+
 </Window>

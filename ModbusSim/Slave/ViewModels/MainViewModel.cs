@@ -1,5 +1,6 @@
 ﻿using Backend.CommandExecutor;
 using Backend.Connection;
+using Backend.EventArgs;
 using NModbus;
 using NModbus.Data;
 using NModbus.Device;
@@ -46,6 +47,7 @@ namespace Slave.ViewModels
         public MainViewModel()
         {
             _executor=new SlaveExecutor();
+            _executor.DataStoreChanged += OnDataStoreChanged;
             Connect();
             SetIRValueCommand = new RelayCommand(SetInputRegister);
         }
@@ -68,7 +70,7 @@ namespace Slave.ViewModels
                 Devices.Add(new Device(item.UnitID, item.Registers));
             }
         }
-        private async void LoadRegisterValues()
+        private void LoadRegisterValues()
         {
             if (_selectedDevice != null)
             {
@@ -86,6 +88,22 @@ namespace Slave.ViewModels
             {
                 _executor.WriteRegisterValueForDevice(SelectedDevice.DeviceID, address, InputRegisterValue);
                 InputRegisterValue = 0;
+            }
+        }
+        private void OnDataStoreChanged(object sender, DataStoreChangedEventArgs e)
+        {
+            if (_selectedDevice != null && _selectedDevice.DeviceID == e.UnitID)
+            {
+                var addresses = SelectedDevice.GetAllAdresses().Where(addr => addr == e.StartAddress).ToList();
+                if (addresses.Any())
+                {
+                    var values = _executor.GetRegistersValuesForDevice(e.UnitID, addresses);
+                    foreach (var kvp in values)
+                    {
+                        SelectedDevice.SetRegisterValue(kvp.Key, kvp.Value);
+                    }
+                    OnPropertyChanged(nameof(SelectedDevice));
+                }
             }
         }
     }

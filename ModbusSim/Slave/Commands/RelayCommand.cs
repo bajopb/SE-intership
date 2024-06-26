@@ -25,7 +25,7 @@ namespace Slave.Commands
         }
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute(parameter);
+            return true;
         }
         public event EventHandler CanExecuteChanged
         {

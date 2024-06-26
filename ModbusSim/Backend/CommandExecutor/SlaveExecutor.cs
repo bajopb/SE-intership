@@ -1,14 +1,17 @@
 ﻿using Backend.Commands.CommandResult;
 using Backend.Configuration;
 using Backend.Connection;
+using Backend.EventArgs;
 using Backend.Interfaces;
 using Backend.MasterServices;
 using Backend.SlaveServices;
 using NModbus;
+using NModbus.Data;
 using NModbus.Device;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +23,7 @@ namespace Backend.CommandExecutor
         private readonly IConnection _connection;
         public ISlaveService SlaveService { get; private set; }
         public Dictionary<byte, IModbusSlave> SlaveCollection { get; private set; }
+        public event EventHandler<DataStoreChangedEventArgs> DataStoreChanged;
         public SlaveExecutor()
         {
             configuration = new ConfigReader();
@@ -41,6 +45,7 @@ namespace Backend.CommandExecutor
                         foreach (var item in list)
                         {
                             SlaveCollection.Add(item.UnitID, SlaveService.CreateSlave(item.UnitID));
+                            SubscribeToDataStoreEvents(SlaveCollection[item.UnitID]);
                         }
                         StartListening();
                     }
@@ -77,7 +82,15 @@ namespace Backend.CommandExecutor
         {
             await SlaveService.SlaveNetwork.ListenAsync();
         }
+        private void SubscribeToDataStoreEvents(IModbusSlave slave)
+        {
+            ((SlaveDataStore)slave.DataStore).HoldingRegisters.AfterWrite += (sender, args) => OnDataStoreChanged(sender, args, slave.UnitId);
+            ((SlaveDataStore)slave.DataStore).InputRegisters.AfterWrite += (sender, args) => OnDataStoreChanged(sender, args, slave.UnitId);
+        }
+        private void OnDataStoreChanged(object sender, PointEventArgs args, byte unitID)
+        {
+            DataStoreChanged?.Invoke(this, new DataStoreChangedEventArgs(unitID, args.StartAddress, args.NumberOfPoints));
+        }
 
-        
     }
 }
