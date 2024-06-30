@@ -6,6 +6,7 @@ using NModbus.Data;
 using NModbus.Device;
 using Slave.Commands;
 using Slave.Models;
+using Slave.Models.Points;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -84,9 +85,9 @@ namespace Slave.ViewModels
         }
         private void SetInputRegister(object parameter)
         {
-            if (parameter is ushort address)
+            if (parameter is AnalogPoints point)
             {
-                _executor.WriteRegisterValueForDevice(SelectedDevice.DeviceID, address, InputRegisterValue);
+                _executor.WriteRegisterValueForDevice(SelectedDevice.DeviceID, point.InputRegisterAddress, point.InputRegisterValue);
                 InputRegisterValue = 0;
             }
         }

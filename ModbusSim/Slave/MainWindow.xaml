@@ -40,8 +40,8 @@
                                                         </StackPanel>
                                                         <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                                                             <Label Content="Input Register Value: "/>
-                                                            <TextBox Text="{Binding DataContext.InputRegisterValue, RelativeSource={RelativeSource AncestorType=Window}, Mode=TwoWay}" Width="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-                                                            <Button Content="Set" Command="{Binding DataContext.SetIRValueCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Key}"></Button>
+                                                            <TextBox Text="{Binding Value.InputRegisterValue,Mode=TwoWay}" Width="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                                                            <Button Content="Set" Command="{Binding DataContext.SetIRValueCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding Value}"></Button>
                                                         </StackPanel>
                                                     </StackPanel>
                                                 </DataTemplate>

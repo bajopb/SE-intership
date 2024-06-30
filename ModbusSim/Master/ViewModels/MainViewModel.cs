@@ -67,8 +67,15 @@ namespace Master.ViewModels
                 StepType stepType = setPoint.StepType;
                 ProcessType processType = setPoint.ProcessType;
                 ushort holdingRegister = setPoint.HoldingRegister;
-                await _commandExecutor.Write((byte)(unitId+1), stepType, processType, holdingRegister, HRValue);
-                HRValue = 0;
+                var res=await _commandExecutor.Write((byte)(unitId+1), stepType, processType, holdingRegister, HRValue);
+                if (res.IsSuccess)
+                {
+                    HRValue = 0;
+                }
+                else
+                {
+                    MessageBox.Show(res.Message);
+                }
             }
         }
         private async void ExecuteLoadIRValue(object parameter)
@@ -79,7 +86,15 @@ namespace Master.ViewModels
                 StepType stepType = setPoint.StepType;
                 ProcessType processType = setPoint.ProcessType;
                 ushort inputRegister = setPoint.InputRegister;
-                IRValue = await _commandExecutor.Read((byte)(unitId + 1), stepType, processType, inputRegister);
+                var res = await _commandExecutor.Read((byte)(unitId + 1), stepType, processType, inputRegister);
+                if(res.IsSuccess)
+                {
+                    IRValue = res.Value;
+                }
+                else
+                {
+                    MessageBox.Show(res.Message);
+                }
             }
         }
 

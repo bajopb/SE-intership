@@ -39,26 +39,58 @@ namespace Backend.CommandExecutor
             }
             else
             {
-                return new ConnectCommandResult("Connection error.", false, null) ;
+                return new ConnectCommandResult("Connection error.", false) ;
             }
         }
-        public async Task<ushort> Read(byte unitId, StepType stepType, ProcessType processType, ushort address)
+        public async Task<ReadCommandResult> Read(byte unitId, StepType stepType, ProcessType processType, ushort address)
         {
+            if (!MasterService.Client.Connected)
+            {
+                return new ReadCommandResult(false, "Slave is not connected.");
+            }
             if (GetRegType(address) == RegType.INPUT_REG)
             {
-                return await (MasterService.ReadSingleInputRegister(unitId, address));
+                try
+                {
+                    ushort value = await (MasterService.ReadSingleInputRegister(unitId, address));
+                    return new ReadCommandResult(true, "", value);
+                }
+                catch (Exception ex)
+                {
+                    return new ReadCommandResult(false, ex.Message.ToString());
+                }
             }
-            throw new NotImplementedException();
+            if (GetRegType(address) == RegType.HOLDING_REG)
+            {
+                try
+                {
+                    ushort value = await (MasterService.ReadSingleHoldingRegister(unitId, address));
+                    return new ReadCommandResult(true, "", value);
+                }
+                catch(Exception ec)
+                {
+                    return new ReadCommandResult(false, ec.Message.ToString());
+                }            
+            }
+            return new ReadCommandResult(false, "Invalid address.");
         }
-        public async Task Write(byte unitId, StepType stepType, ProcessType processType, ushort address, ushort value)
+        public async Task<WriteCommandResult> Write(byte unitId, StepType stepType, ProcessType processType, ushort address, ushort value)
         {
             if (GetRegType(address) == RegType.HOLDING_REG)
             {
-                await MasterService.WriteSingleHoldingRegisters(unitId, address, value);
+                try
+                {
+                    await MasterService.WriteSingleHoldingRegisters(unitId, address, value);
+                    return new WriteCommandResult(true, "");
+                }
+                catch (Exception ex)
+                {
+                    return new WriteCommandResult(false, ex.Message.ToString());
+                }
             }
             else 
-            { 
-                throw new NotImplementedException();
+            {
+                return new WriteCommandResult(false, "Input registers can not be written.");
             }
         }
 
