@@ -34,7 +34,7 @@ namespace Slave.ViewModels
                 LoadRegisterValues();
             }
         }
-        private ushort _inputRegisterValue;
+        private ushort _inputRegisterValue=0;
         public ushort InputRegisterValue
         {
             get { return _inputRegisterValue; }

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Perun\Desktop\New folder\SE-intership\ModbusSim\Master\obj\Release\net7.0-windows\
+C:\Users\nikola\Desktop\SE-intership\ModbusSim\Master\obj\Release\net7.0-windows\
 Master
 none
 false
 TRACE;RELEASE;NET;NET7_0;NETCOREAPP
-C:\Users\Perun\Desktop\New folder\SE-intership\ModbusSim\Master\App.xaml
-6-160594752
+C:\Users\nikola\Desktop\SE-intership\ModbusSim\Master\App.xaml
+11407045341
 
-22846165151
-199134902222
-MainWindow.xaml;Views\DevicesViews\Device1View.xaml;Views\FunctionsViews\ReadCoilsView.xaml;Views\FunctionsViews\WriteMultiCoilsView.xaml;Views\FunctionsViews\WriteSingleCoilView.xaml;Views\FunctionsViews\WriteSingleHoldingRegisterView.xaml;
+16-1820176695
+199966977856
+MainWindow.xaml;
 
 True
 

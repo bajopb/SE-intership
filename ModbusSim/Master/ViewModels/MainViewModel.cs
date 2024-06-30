@@ -28,6 +28,7 @@ namespace Master.ViewModels
         public MainViewModel() {
             Devices = new ObservableCollection<Device>();
             _commandExecutor = new CommandExecutor();
+            ConnectionState = ConnectionState.DISCONNECTED;
             Connect();
             Send = new RelayCommand(ExecuteSendCommand);
             LoadIRValueCommand = new RelayCommand(ExecuteLoadIRValue);
@@ -35,12 +36,20 @@ namespace Master.ViewModels
         private async Task Connect()
         {
             var res = await _commandExecutor.Connect();
-            List<ConfigItem> items = new List<ConfigItem>();
-            foreach(var item in res.ConfigItems)
+            if (res.IsSuccess)
             {
-                items.Add(new ConfigItem() { UnitID = item.UnitID, Registers = item.Registers });
+                List<ConfigItem> items = new List<ConfigItem>();
+                foreach (var item in res.ConfigItems)
+                {
+                    items.Add(new ConfigItem() { UnitID = item.UnitID, Registers = item.Registers });
+                }
+                InitializeDevicesCollection(items);
+                ConnectionState = ConnectionState.CONNECTED;
             }
-            InitializeDevicesCollection(items);
+            else
+            {
+                MessageBox.Show(res.Message);
+            }
         }
 
         private void InitializeDevicesCollection(List<ConfigItem> items)
@@ -99,6 +108,20 @@ namespace Master.ViewModels
             {
                 hrValue = value;
                 OnPropertyChanged(nameof(HRValue));
+            }
+        }
+        
+        private ConnectionState _connectionState;
+        public ConnectionState ConnectionState
+        {
+            get
+            {
+                return _connectionState;
+            }
+            set
+            {
+                _connectionState = value;
+                OnPropertyChanged(nameof(ConnectionState));
             }
         }
 

@@ -9,7 +9,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="469" Width="824">
     <Grid Background="Gray">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Devices}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -71,5 +75,15 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
+        <StatusBar Grid.Row="1">
+            <StatusBarItem>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Connection status: " TextBlock.FontWeight="Bold" />
+                        <Label>
+                            <TextBlock Text="{Binding Path=ConnectionState}" TextBlock.FontWeight="Bold" />
+                        </Label>
+                    </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

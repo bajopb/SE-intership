@@ -13,7 +13,7 @@ namespace Backend.Configuration
 {
     public class ConfigReader : IConfiguration
     {
-        private string path = "C:\\Users\\Perun\\Desktop\\New folder\\SE-intership\\ModbusSim\\Master\\RtuCfg.txt";
+        private string path = "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Backend\\RtuCfg.txt";
         private byte deviceCounter=1;
         public string Address { get; private set; }
         public int Port { get; private set; }
