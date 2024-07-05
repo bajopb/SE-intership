@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Master.Models.SecondStageModels
 {
+    /// <summary>
+    /// Represents a grinding step.
+    /// </summary>
     public class GrindingStep:IStep
     {
         public Dictionary<ProcessType, SetPoint> Registers { get; private set; }

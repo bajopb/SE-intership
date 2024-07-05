@@ -16,6 +16,9 @@ namespace Master.Models
     public class SetPoint:INotifyPropertyChanged
     {
         private ushort _holdingRegisterValue;
+        /// <summary>
+        /// Gets or sets the value of the holding register.
+        /// </summary>
         public ushort HoldingRegisterValue
         {
             get => _holdingRegisterValue;
@@ -25,10 +28,15 @@ namespace Master.Models
                 OnPropertyChanged(nameof(HoldingRegisterValue));
             }
         }
-
+        /// <summary>
+        /// Gets or sets the address of the holding register.
+        /// </summary>
         public ushort HoldingRegisterAddress { get; set; }
 
         private ushort _inputRegisterValue;
+        /// <summary>
+        /// Gets or sets the value of the input register.
+        /// </summary>
         public ushort InputRegisterValue
         {
             get => _inputRegisterValue;
@@ -38,7 +46,9 @@ namespace Master.Models
                 OnPropertyChanged(nameof(InputRegisterValue));
             }
         }
-
+        /// <summary>
+        /// Gets or sets the address of the input register.
+        /// </summary>
         public ushort InputRegisterAddress { get; set; }
 
         /// <summary>

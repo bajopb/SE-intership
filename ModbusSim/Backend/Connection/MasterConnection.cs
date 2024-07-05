@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Backend.Connection
 {
+    /// <summary>
+    /// Represents the Master connection logic and the implementation of <see cref="IConnection"/>.
+    /// </summary>
     public class MasterConnection : IConnection
     {
         public TcpClient Client {  get; set; }

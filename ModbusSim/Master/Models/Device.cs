@@ -16,8 +16,10 @@ namespace Master.Models
     /// </summary>
     public class Device:INotifyPropertyChanged
     { 
-        public byte UnitId { get;set; }
         private Dictionary<StepType, IStep> _steps;
+        /// <summary>
+        /// Gets or sets the dictionary of processing steps.
+        /// </summary>
         public Dictionary<StepType, IStep> Steps
         {
             get => _steps;
@@ -27,13 +29,21 @@ namespace Master.Models
                 OnPropertyChanged(nameof(Steps));
             }
         }
+        /// <summary>
+        /// Gets or sets the unit ID of the device.
+        /// </summary>
+        public byte UnitId { get; set; }
         public Device(byte unitId, Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> dic) {
             UnitId = unitId;
             Steps = new Dictionary<StepType, IStep>();
             SetSteps(dic);
         }
 
-        
+        /// <summary>
+        /// Sets the value of a register.
+        /// </summary>
+        /// <param name="address">The address of the register.</param>
+        /// <param name="value">The value to set.</param>
         public void SetRegisterValue(ushort address, ushort value)
         {
             foreach(var step in Steps)

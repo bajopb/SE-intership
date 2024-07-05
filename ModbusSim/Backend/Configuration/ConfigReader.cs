@@ -11,18 +11,28 @@ using Backend.Models.Enums;
 
 namespace Backend.Configuration
 {
+    /// <summary>
+    /// Reads configuration from a text file and implements <see cref="IConfiguration"/>.
+    /// </summary>
     public class ConfigReader : IConfiguration
     {
-        private string path = "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Backend\\RtuCfg.txt";
+        private string path = "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Backend\\RtuCfg.txt";
         private byte deviceCounter=1;
-        public string Address { get; private set; }
-        public int Port { get; private set; }
         private Dictionary<byte, IConfigItem> devicesToConfiguration = new Dictionary<byte, IConfigItem>();
         private ConfigItemEqualityComparer equalityComparer = new ConfigItemEqualityComparer();
+        public string Address { get; private set; }
+        public int Port { get; private set; }
         public ConfigReader() {
             ReadConfiguration();
         }
-
+        /// <summary>
+        /// Retrieves the list of configuration items.
+        /// </summary>
+        /// <returns>A list of <see cref="IConfigItem"/> representing the configuration items.</returns>
+        public List<IConfigItem> GetConfigurationItems()
+        {
+            return new List<IConfigItem>(devicesToConfiguration.Values);
+        }
         private void ReadConfiguration() {
             using (TextReader tr = new StreamReader(path))
             {
@@ -57,10 +67,6 @@ namespace Backend.Configuration
             {
                 throw new ConfigurationException("Configuration error! Check RtuCfg.txt file!");
             }
-        }
-        public List<IConfigItem> GetConfigurationItems()
-        {
-            return new List<IConfigItem>(devicesToConfiguration.Values);
         }
     }
 }

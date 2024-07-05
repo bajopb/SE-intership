@@ -17,11 +17,23 @@ using System.Windows.Media;
 
 namespace Master.ViewModels
 {
+    /// <summary>
+    /// The main view model for the application.
+    /// </summary>
     public class MainViewModel:ViewModelBase
     {
         private CommandExecutor _commandExecutor;
+        /// <summary>
+        /// Gets or sets the collection of devices.
+        /// </summary>
         public ObservableCollection<Device> Devices { get; set; }
+        /// <summary>
+        /// Command for writing holding register value.
+        /// </summary>
         public ICommand Send {  get; set; }
+        /// <summary>
+        /// Command for reading input register value.
+        /// </summary>
         public ICommand LoadIRValueCommand { get; }
         public MainViewModel() {
             Devices = new ObservableCollection<Device>();
@@ -31,6 +43,9 @@ namespace Master.ViewModels
             Send = new RelayCommand(ExecuteSendCommand);
             LoadIRValueCommand = new RelayCommand(ExecuteLoadIRValue);
         }
+        /// <summary>
+        /// Connects to the device and initializes the devices collection.
+        /// </summary>
         private async Task Connect()
         {
             var res = await _commandExecutor.Connect();

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Backend.Connection
 {
+    /// <summary>
+    /// Represents the Slave connection logic and the implementation of <see cref="IConnection"/>.
+    /// </summary>
     public class SlaveConnection : IConnection
     {
         public TcpListener Listener { get; set; }

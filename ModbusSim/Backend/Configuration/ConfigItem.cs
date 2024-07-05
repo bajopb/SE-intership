@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Backend.Configuration
 {
+    /// <summary>
+    /// Represents a implementation of <see cref="IConfigItem"/>.
+    /// </summary>
     public class ConfigItem : IConfigItem
     {
         private delegate Dictionary<ProcessType, List<ushort>> Loader(string[] reg);
@@ -29,13 +32,11 @@ namespace Backend.Configuration
         };
         public byte UnitID { get; private set; }
         public Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> Registers { get; private set; }
-
         public ConfigItem(List<string> configParameters)
         {
            UnitID = Convert.ToByte(configParameters[0].Split(' ')[1]);
            Registers=GetRegisters(configParameters);
         }
-
         private Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> GetRegisters(List<string> configParameters)
         {
             Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> dic = new Dictionary<StepType, Dictionary<ProcessType, List<ushort>>>();

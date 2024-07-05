@@ -10,10 +10,19 @@ using System.Threading.Tasks;
 
 namespace Slave.Models
 {
+    /// <summary>
+    /// Represents a device with registers mapped to steps and processes.
+    /// </summary>
     public class Device : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Gets the ID of the device.
+        /// </summary>
         public byte DeviceID { get; private set; }
         private Dictionary<StepType, Dictionary<ProcessType, AnalogPoints>> _registers;
+        /// <summary>
+        /// Gets or sets the registers mapped to steps and processes.
+        /// </summary>
         public Dictionary<StepType, Dictionary<ProcessType, AnalogPoints>> Registers
         {
             get => _registers;
@@ -33,7 +42,10 @@ namespace Slave.Models
                 Registers.Add(kvp.Key, SetAnalogPoints(kvp.Value));
             }
         }
-
+        /// <summary>
+        /// Gets all register addresses in the device.
+        /// </summary>
+        /// <returns>A list of register addresses.</returns>
         public List<ushort> GetAllAdresses()
         {
             List<ushort> addresses = new List<ushort>();
@@ -47,7 +59,11 @@ namespace Slave.Models
             }
             return addresses;
         }
-
+        /// <summary>
+        /// Sets the value of a register based on its address.
+        /// </summary>
+        /// <param name="address">The address of the register.</param>
+        /// <param name="value">The value to set.</param>
         public void SetRegisterValue(ushort address, ushort value)
         {
             foreach (var step in Registers)
@@ -78,10 +94,10 @@ namespace Slave.Models
             return res;
         }
 
-            public event PropertyChangedEventHandler PropertyChanged;
-            protected virtual void OnPropertyChanged(string propertyName)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

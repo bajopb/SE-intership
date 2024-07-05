@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Master.Models.SecondStageModels
 {
+    /// <summary>
+    /// Represents a filtering step.
+    /// </summary>
     public class FilteringStep:IStep
     {
         public Dictionary<ProcessType, SetPoint> Registers { get; private set; }

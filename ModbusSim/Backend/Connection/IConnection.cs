@@ -14,14 +14,18 @@ namespace Backend.Connection
     public interface IConnection
     {
         /// <summary>
-        /// Connects to the remote server asynchronously.
+        /// Connects to the remote point asynchronously.
         /// </summary>
         /// <returns>A task representing the asynchronous connect operation.</returns>
         Task Connect(string address, int port);
         /// <summary>
-        /// Disconnects from the remote server.
+        /// Disconnects from the remote point.
         /// </summary>
         void Disconnect();
+        /// <summary>
+        /// Checks if the connection is established.
+        /// </summary>
+        /// <returns>True if connected, otherwise false.</returns>
         bool IsConnected();
     }
 }

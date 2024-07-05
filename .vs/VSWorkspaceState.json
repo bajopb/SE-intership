@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ModbusSim",
+    "\\ModbusSim\\Master"
   ],
+  "SelectedNode": "\\ModbusSim\\Master\\Master.csproj",
   "PreviewInSolutionExplorer": false
 }

@@ -17,12 +17,18 @@ using System.Threading.Tasks;
 
 namespace Backend.CommandExecutor
 {
+    /// <summary>
+    /// Provides functionality to manage Slave devices.
+    /// </summary>
     public class SlaveExecutor
     {
         private IConfiguration configuration;
         private readonly IConnection _connection;
-        public ISlaveService SlaveService { get; private set; }
-        public Dictionary<byte, IModbusSlave> SlaveCollection { get; private set; }
+        private ISlaveService SlaveService { get;  set; }
+        private Dictionary<byte, IModbusSlave> SlaveCollection { get;  set; }
+        /// <summary>
+        /// Occurs when the Slave data store changes.
+        /// </summary>
         public event EventHandler<DataStoreChangedEventArgs> DataStoreChanged;
         public SlaveExecutor()
         {
@@ -31,6 +37,10 @@ namespace Backend.CommandExecutor
             SlaveService = new SlaveService();
             SlaveCollection=new Dictionary<byte, IModbusSlave>();
         }
+        /// <summary>
+        /// Connects to the Master.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the connection result.</returns>
         public async Task<ConnectCommandResult> Connect()
         {
             await _connection.Connect(configuration.Address, configuration.Port);
@@ -58,6 +68,12 @@ namespace Backend.CommandExecutor
                 return new ConnectCommandResult("Connection error.", false);
             }
         }
+        /// <summary>
+        /// Gets the values of specified registers for a given device.
+        /// </summary>
+        /// <param name="deviceId">The unit ID of the device.</param>
+        /// <param name="addresses">The list of register addresses.</param>
+        /// <returns>A dictionary containing register addresses and their corresponding values.</returns>
         public Dictionary<ushort, ushort> GetRegistersValuesForDevice(byte deviceId, List<ushort> addresses)
         {
             Dictionary<ushort, ushort> values = new Dictionary<ushort, ushort>();
@@ -75,6 +91,12 @@ namespace Backend.CommandExecutor
             }
             return values;
         }
+        /// <summary>
+        /// Writes a value to a specified register for a given device.
+        /// </summary>
+        /// <param name="deviceId">The unit ID of the device.</param>
+        /// <param name="address">The register address.</param>
+        /// <param name="value">The value to write.</param>
         public void WriteRegisterValueForDevice(byte devicId, ushort address, ushort value) {
             SlaveCollection[devicId].DataStore.InputRegisters.WritePoints(address, new ushort[] { value });
         }

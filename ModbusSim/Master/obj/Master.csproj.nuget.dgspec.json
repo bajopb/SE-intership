@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Master\\Master.csproj": {}
+    "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Master\\Master.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Backend\\Backend.csproj": {
+    "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Backend\\Backend.csproj",
+        "projectPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\nikola\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Backend\\obj\\",
+        "outputPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nikola\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,14 +65,14 @@
         }
       }
     },
-    "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Master\\Master.csproj": {
+    "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Master\\Master.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Master\\Master.csproj",
+        "projectUniqueName": "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Master\\Master.csproj",
         "projectName": "Master",
-        "projectPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Master\\Master.csproj",
+        "projectPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Master\\Master.csproj",
         "packagesPath": "C:\\Users\\nikola\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Master\\obj\\",
+        "outputPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Master\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nikola\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -89,8 +89,8 @@
           "net7.0-windows7.0": {
             "targetAlias": "net7.0-windows",
             "projectReferences": {
-              "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Backend\\Backend.csproj": {
-                "projectPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\ModbusSim\\Backend\\Backend.csproj"
+              "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Backend\\Backend.csproj": {
+                "projectPath": "C:\\Users\\nikola\\Desktop\\SE-intership\\SE-intership\\ModbusSim\\Backend\\Backend.csproj"
               }
             }
           }

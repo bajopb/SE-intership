@@ -18,10 +18,19 @@ using System.Windows.Input;
 
 namespace Slave.ViewModels
 {
+    /// <summary>
+    /// Main ViewModel for the slave application.
+    /// </summary>
     public class MainViewModel:ViewModelBase
     {
         private SlaveExecutor _executor;
-        public ObservableCollection<Device> Devices { get; set; }       
+        /// <summary>
+        /// Collection of devices.
+        /// </summary>
+        public ObservableCollection<Device> Devices { get; set; }
+        /// <summary>
+        /// Command to set the value of an input register.
+        /// </summary>
         public ICommand SetIRValueCommand {  get; set; }
         
         public MainViewModel()
@@ -31,7 +40,9 @@ namespace Slave.ViewModels
             Connect();
             SetIRValueCommand = new RelayCommand(SetInputRegister);
         }
-
+        /// <summary>
+        /// Connects to the Master and initializes the devices collection.
+        /// </summary>
         private async Task Connect()
         {
             var res = await _executor.Connect();

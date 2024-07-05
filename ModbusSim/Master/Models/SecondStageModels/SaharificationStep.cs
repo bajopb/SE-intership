@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Master.Models.SecondStageModels
 {
+    /// <summary>
+    /// Represents a saharification step.
+    /// </summary>
     public class SaharificationStep:IStep
     {
         public Dictionary<ProcessType, SetPoint> Registers {get; private set;}
-
         public byte DeviceId { get; private set; }
         public StepType StepType { get; private set; }
         public ProcessType ProcessType { get; private set; }

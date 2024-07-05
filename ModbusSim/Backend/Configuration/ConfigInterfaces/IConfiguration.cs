@@ -7,10 +7,23 @@ using System.Threading.Tasks;
 
 namespace Backend.Interfaces
 {
+    /// <summary>
+    /// Represents the configuration for the Modbus connection.
+    /// </summary>
     public interface IConfiguration
     {
+        /// <summary>
+        /// Gets the IP address for connection.
+        /// </summary>
         string Address { get;}
-        int Port { get;}    
+        /// <summary>
+        /// Gets the port for listening.
+        /// </summary>
+        int Port { get;}
+        /// <summary>
+        /// Gets the configuration items for the Modbus connection.
+        /// </summary>
+        /// <returns>A list of configuration items.</returns>
         List<IConfigItem> GetConfigurationItems();
     }
 }
