@@ -12,6 +12,21 @@ namespace Backend.Configuration
 {
     public class ConfigItem : IConfigItem
     {
+        private delegate Dictionary<ProcessType, List<ushort>> Loader(string[] reg);
+        private static readonly Dictionary<StepType, Loader> loader = new Dictionary<StepType, Loader>
+        {
+            {StepType.GRINDING_S, LoadTemperatureTimeAndMethod },
+            {StepType.SAHARIFICATION_S, LoadTemperatureTimeAndMethod },
+            {StepType.MASHOUT_S, LoadTemperatureAndTime },
+            {StepType.FILTERING_S, LoadTemperatureAndTime }
+        };
+        private static readonly Dictionary<string, StepType> mappings = new Dictionary<string, StepType>
+        {
+            {"GR_S", StepType.GRINDING_S },
+            {"SA_S", StepType.SAHARIFICATION_S },
+            {"MA_S", StepType.MASHOUT_S },
+            {"FI_S", StepType.FILTERING_S }
+        };
         public byte UnitID { get; private set; }
         public Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> Registers { get; private set; }
 
@@ -24,41 +39,38 @@ namespace Backend.Configuration
         private Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> GetRegisters(List<string> configParameters)
         {
             Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> dic = new Dictionary<StepType, Dictionary<ProcessType, List<ushort>>>();
-            for (int i = 1; i < configParameters.Count; i++) { 
+            for (int i = 1; i < configParameters.Count; i++)
+            { 
                 string[] reg = configParameters[i].Split(' ');
-                StepType st = GetStepType(reg[0]);
-                Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> addr = new Dictionary<StepType, Dictionary<ProcessType, List<ushort>>>();
-                if (st==StepType.GRINDING_S)
+                StepType st;
+                if (!mappings.TryGetValue(reg[0], out st))
                 {
-                    Dictionary < ProcessType, List<ushort>> addrs=new Dictionary<ProcessType, List<ushort>>();
-                    addrs.Add(ProcessType.TEMPERATURE, new List<ushort> { ushort.Parse(reg[1]), ushort.Parse(reg[2]) });
-                    addrs.Add(ProcessType.TIME, new List<ushort> { ushort.Parse(reg[3]), ushort.Parse(reg[4]) });
-                    addrs.Add(ProcessType.METHOD, new List<ushort> { ushort.Parse(reg[5]), ushort.Parse(reg[6]) });
-                    dic.Add(st, addrs);
+                    throw new ConfigurationException("Incorrect Step Type value.");
                 }
-                if (st == StepType.SAHARIFICATION_S)
+                Loader strategy;
+                if(!loader.TryGetValue(st, out strategy))
                 {
-                    Dictionary<ProcessType, List<ushort>> addrs = new Dictionary<ProcessType, List<ushort>>();
-                    addrs.Add(ProcessType.TEMPERATURE, new List<ushort> { ushort.Parse(reg[1]), ushort.Parse(reg[2]) });
-                    addrs.Add(ProcessType.TIME, new List<ushort> { ushort.Parse(reg[3]), ushort.Parse(reg[4]) });
-                    addrs.Add(ProcessType.METHOD, new List<ushort> { ushort.Parse(reg[5]), ushort.Parse(reg[6]) });
-                    dic.Add(st, addrs);
+                    throw new ConfigurationException();
                 }
-                if (st == StepType.MASHOUT_S)
-                {
-                    Dictionary<ProcessType, List<ushort>> addrs = new Dictionary<ProcessType, List<ushort>>();
-                    addrs.Add(ProcessType.TEMPERATURE, new List<ushort> { ushort.Parse(reg[1]), ushort.Parse(reg[2]) });
-                    addrs.Add(ProcessType.TIME, new List<ushort> { ushort.Parse(reg[3]), ushort.Parse(reg[4]) });
-                    dic.Add(st, addrs);
-                }
-                if (st == StepType.FILTERING_S)
-                {
-                    Dictionary<ProcessType, List<ushort>> addrs = new Dictionary<ProcessType, List<ushort>>();
-                    addrs.Add(ProcessType.TEMPERATURE, new List<ushort> { ushort.Parse(reg[1]), ushort.Parse(reg[2]) });
-                    addrs.Add(ProcessType.TIME, new List<ushort> { ushort.Parse(reg[3]), ushort.Parse(reg[4]) });
-                    dic.Add(st, addrs);
-                }
+                dic.Add(st, strategy(reg));
             }
+            return dic;
+        }
+
+        private static Dictionary<ProcessType, List<ushort>> LoadTemperatureAndTime(string[] reg)
+        {
+            Dictionary<ProcessType, List<ushort>> dic = new Dictionary<ProcessType, List<ushort>>();
+            dic.Add(ProcessType.TEMPERATURE, new List<ushort> { ushort.Parse(reg[1]), ushort.Parse(reg[2]) });
+            dic.Add(ProcessType.TIME, new List<ushort> { ushort.Parse(reg[3]), ushort.Parse(reg[4]) });
+            return dic;
+        }
+
+        private static Dictionary<ProcessType, List<ushort>> LoadTemperatureTimeAndMethod(string[] reg)
+        {
+            Dictionary<ProcessType, List<ushort>> dic = new Dictionary<ProcessType, List<ushort>>();
+            dic.Add(ProcessType.TEMPERATURE, new List<ushort> { ushort.Parse(reg[1]), ushort.Parse(reg[2]) });
+            dic.Add(ProcessType.TIME, new List<ushort> { ushort.Parse(reg[3]), ushort.Parse(reg[4]) });
+            dic.Add(ProcessType.METHOD, new List<ushort> { ushort.Parse(reg[5]), ushort.Parse(reg[6]) });
             return dic;
         }
 
