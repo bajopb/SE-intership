@@ -20,31 +20,10 @@ namespace Slave.ViewModels
 {
     public class MainViewModel:ViewModelBase
     {
-        private readonly IConnection _connectionService;
         private SlaveExecutor _executor;
         public ObservableCollection<Device> Devices { get; set; }       
         public ICommand SetIRValueCommand {  get; set; }
-        private Device _selectedDevice;
-        public Device SelectedDevice
-        {
-            get { return _selectedDevice; }
-            set
-            {
-                _selectedDevice = value;
-                OnPropertyChanged(nameof(SelectedDevice));
-                LoadRegisterValues();
-            }
-        }
-        private ushort _inputRegisterValue=0;
-        public ushort InputRegisterValue
-        {
-            get { return _inputRegisterValue; }
-            set
-            {
-                _inputRegisterValue = value;
-                OnPropertyChanged(nameof(InputRegisterValue));
-            }
-        }
+        
         public MainViewModel()
         {
             _executor=new SlaveExecutor();
@@ -88,7 +67,6 @@ namespace Slave.ViewModels
             if (parameter is AnalogPoints point)
             {
                 _executor.WriteRegisterValueForDevice(SelectedDevice.DeviceID, point.InputRegisterAddress, point.InputRegisterValue);
-                InputRegisterValue = 0;
             }
         }
         private void OnDataStoreChanged(object sender, DataStoreChangedEventArgs e)
@@ -107,5 +85,18 @@ namespace Slave.ViewModels
                 }
             }
         }
+
+        private Device _selectedDevice;
+        public Device SelectedDevice
+        {
+            get { return _selectedDevice; }
+            set
+            {
+                _selectedDevice = value;
+                OnPropertyChanged(nameof(SelectedDevice));
+                LoadRegisterValues();
+            }
+        }
+
     }
 }

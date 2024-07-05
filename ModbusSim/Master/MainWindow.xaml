@@ -8,16 +8,38 @@
 
         mc:Ignorable="d"
         Title="MainWindow" Height="469" Width="824">
-    <Grid Background="Gray">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Devices}">
-                <ItemsControl.ItemTemplate>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox ItemsSource="{Binding Devices}" 
+                 SelectedItem="{Binding SelectedDevice}" 
+                 DisplayMemberPath="UnitId"
+                 Grid.Row="0" Grid.Column="0"/>
+
+        <ScrollViewer Grid.Row="0" Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <ContentControl Content="{Binding SelectedDevice}">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedDevice}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+                <ContentControl.ContentTemplate>
                     <DataTemplate>
-                        <Expander Header="{Binding UnitId}" Margin="10,0,0,0">
+                        <StackPanel>
+                            <TextBlock Text="Device Details" FontWeight="Bold" FontSize="16"/>
+                            <TextBlock Text="{Binding UnitId}" />
                             <ItemsControl ItemsSource="{Binding Steps}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -43,12 +65,12 @@
                                                                 </Grid.ColumnDefinitions>
 
                                                                 <GroupBox Header="Current Value" Width="100" Grid.Row="0" Grid.Column="0">
-                                                                    <TextBlock Background="White" Text="{Binding DataContext.IRValue, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                                                    <TextBlock Background="White" Text="{Binding Value.InputRegisterValue}" 
                                                                            Width="90"
                                                                            Height="20"/>
                                                                 </GroupBox>
                                                                 <Label Content="Commanded Value: " Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,20,0,0" />
-                                                                <TextBox Text="{Binding DataContext.HRValue, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                                                <TextBox Text="{Binding Value.HoldingRegisterValue}" 
                                                                        Width="50"
                                                                        Height="20"
                                                                        Margin="0,20,0,0"
@@ -70,19 +92,20 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-                        </Expander>
+                        </StackPanel>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
         </ScrollViewer>
-        <StatusBar Grid.Row="1">
+
+        <StatusBar Grid.Row="1" Grid.ColumnSpan="2">
             <StatusBarItem>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Connection status: " TextBlock.FontWeight="Bold" />
-                        <Label>
-                            <TextBlock Text="{Binding Path=ConnectionState}" TextBlock.FontWeight="Bold" />
-                        </Label>
-                    </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Connection status: " TextBlock.FontWeight="Bold" />
+                    <Label>
+                        <TextBlock Text="{Binding Path=ConnectionState}" TextBlock.FontWeight="Bold" />
+                    </Label>
+                </StackPanel>
             </StatusBarItem>
         </StatusBar>
     </Grid>

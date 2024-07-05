@@ -25,11 +25,11 @@ namespace Master.Models.SecondStageModels
             {
                 if (kvp.Key == ProcessType.TEMPERATURE)
                 {
-                    Registers.Add(ProcessType.TEMPERATURE, new SetPoint(DeviceId, StepType, ProcessType.TEMPERATURE, kvp.Value[0], kvp.Value[1]));
+                    Registers.Add(ProcessType.TEMPERATURE, new SetPoint(kvp.Value[0], kvp.Value[1]));
                 }
                 else if (kvp.Key == ProcessType.TIME)
                 {
-                    Registers.Add(ProcessType.TIME, new SetPoint(DeviceId, StepType, ProcessType.TIME, kvp.Value[0], kvp.Value[1]));
+                    Registers.Add(ProcessType.TIME, new SetPoint(kvp.Value[0], kvp.Value[1]));
                 }
             }
         }

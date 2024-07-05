@@ -1,8 +1,10 @@
 ﻿using Backend.Models.Enums;
 using Master.Models.SecondStageModels;
+using Microsoft.Win32;
 using NModbus;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +14,47 @@ namespace Master.Models
     /// <summary>
     /// Represents a device with various processing steps.
     /// </summary>
-    public class Device
+    public class Device:INotifyPropertyChanged
     { 
         public byte UnitId { get;set; }
-        /// <summary>
-        /// Grinding step for the device.
-        /// </summary>
-        public Dictionary<StepType, IStep> Steps { get; set; }
+        private Dictionary<StepType, IStep> _steps;
+        public Dictionary<StepType, IStep> Steps
+        {
+            get => _steps;
+            private set
+            {
+                _steps=value;
+                OnPropertyChanged(nameof(Steps));
+            }
+        }
         public Device(byte unitId, Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> dic) {
             UnitId = unitId;
             Steps = new Dictionary<StepType, IStep>();
             SetSteps(dic);
+        }
+
+        
+        public void SetRegisterValue(ushort address, ushort value)
+        {
+            foreach(var step in Steps)
+            {
+                foreach(var process in Steps.Values)
+                {
+                    foreach(var setPoint in process.Registers)
+                    {
+                        if (setPoint.Value.HoldingRegisterAddress == address)
+                        {
+                            setPoint.Value.HoldingRegisterValue = value;
+                            OnPropertyChanged(nameof(Steps));
+                        }
+                        if (setPoint.Value.InputRegisterAddress == address)
+                        {
+                            setPoint.Value.InputRegisterValue = value;
+                            OnPropertyChanged(nameof(Steps));
+                        }
+                    }
+                }
+            }
         }
         private void SetSteps(Dictionary<StepType, Dictionary<ProcessType, List<ushort>>> dic)
         {
@@ -45,6 +77,11 @@ namespace Master.Models
                     Steps.Add(StepType.FILTERING_S, new FilteringStep(UnitId, StepType.FILTERING_S, item.Value));
                 }
             }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
